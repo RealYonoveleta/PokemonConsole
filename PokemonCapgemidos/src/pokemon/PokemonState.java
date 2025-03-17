@@ -1,5 +1,5 @@
 package pokemon;
 
 public enum PokemonState {
-	FAINTED
+	NORMAL, FAINTED
 }
