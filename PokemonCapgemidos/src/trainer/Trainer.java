@@ -66,11 +66,4 @@ public class Trainer {
 		setActivePokemon(rdPokemon);
 	}
 
-	public void chooseRandomMove(Pokemon target) {
-		int numberOfMoves = getCurrentPokemon().movesKnown();
-		if (numberOfMoves > 0) {
-			getCurrentPokemon().useMove(rd.nextInt(getCurrentPokemon().getMoveset().size()), target);
-		}
-	}
-
 }

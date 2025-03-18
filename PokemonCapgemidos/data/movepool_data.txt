@@ -1,0 +1,51 @@
+Bulbasaur:Tackle-1,Growl-3,Leech Seed-7,Vine Whip-13,Poison Powder-20,Razor Leaf-27,Growth-34,Sleep Powder-41,Solar Beam-48
+Charmander:Scratch-1,Growl-1,Ember-9,Leer-15,Rage-22,Slash-30,Flamethrower-38,Fire Spin-46
+Squirtle:Tackle-1,Tail Whip-1,Bubble-8,Water Gun-15,Bite-22,Withdraw-28,Skull Bash-35,Hydro Pump-42
+Caterpie:Tackle-1,String Shot-1
+Metapod:Harden-1
+Butterfree:Confusion-10,Poison Powder-12,Stun Spore-14,Sleep Powder-16,Psybeam-21,Whirlwind-26,Agility-32
+Weedle:Poison Sting-1,String Shot-1
+Kakuna:Harden-1
+Beedrill:Fury Attack-10,Focus Energy-15,Twineedle-20,Rage-25,Pin Missile-30,Agility-35
+Pidgey:Gust-1,Sand Attack-5,Quick Attack-12,Whirlwind-19,Wing Attack-28,Agility-36,Mirror Move-44
+Pidgeotto:Gust-1,Sand Attack-5,Quick Attack-12,Whirlwind-21,Wing Attack-31,Agility-40,Mirror Move-50
+Pidgeot:Gust-1,Sand Attack-5,Quick Attack-12,Whirlwind-21,Wing Attack-31,Agility-44,Mirror Move-54
+Rattata:Tackle-1,Tail Whip-1,Quick Attack-7,Hyper Fang-14,Focus Energy-23,Super Fang-34
+Raticate:Tackle-1,Tail Whip-1,Quick Attack-7,Hyper Fang-14,Focus Energy-27,Super Fang-41
+Spearow:Peck-1,Growl-1,Leer-9,Fury Attack-15,Mirror Move-22,Drill Peck-29,Agility-36
+Fearow:Peck-1,Growl-1,Leer-9,Fury Attack-15,Mirror Move-25,Drill Peck-34,Agility-43
+Ekans:Wrap-1,Leer-1,Poison Sting-10,Bite-17,Glare-24,Screech-31,Acid-38
+Arbok:Wrap-1,Leer-1,Poison Sting-10,Bite-17,Glare-27,Screech-36,Acid-47
+Pikachu:Thunder Shock-1,Growl-1,Thunder Wave-9,Quick Attack-16,Swift-26,Agility-33,Thunder-43
+Raichu:Thunder Shock-1,Growl-1,Thunder Wave-1,Quick Attack-1
+Sandshrew:Scratch-1,Sand Attack-10,Slash-17,Poison Sting-24,Swift-31,Fury Swipes-38
+Sandslash:Scratch-1,Sand Attack-10,Slash-17,Poison Sting-27,Swift-36,Fury Swipes-47
+Nidoran♀:Growl-1,Tackle-1,Scratch-8,Poison Sting-14,Double Kick-21,Bite-29,Fury Swipes-36
+Nidorina:Growl-1,Tackle-1,Scratch-8,Poison Sting-14,Double Kick-23,Bite-32,Fury Swipes-41
+Nidoqueen:Tackle-1,Body Slam-23
+Nidoran♂:Leer-1,Tackle-1,Horn Attack-8,Poison Sting-14,Double Kick-21,Fury Attack-29,Horn Drill-36
+Nidorino:Leer-1,Tackle-1,Horn Attack-8,Poison Sting-14,Double Kick-23,Fury Attack-32,Horn Drill-41
+Nidoking:Tackle-1,Thrash-23,Earthquake-43
+Clefairy:Pound-1,Growl-1,Sing-13,Double Slap-18,Minimize-24,Metronome-31,Defense Curl-39
+Clefable:Sing-1,Metronome-1
+Vulpix:Ember-1,Tail Whip-1,Quick Attack-16,Confuse Ray-21,Flamethrower-36,Fire Spin-42
+Ninetales:Quick Attack-1,Confuse Ray-1,Flamethrower-36,Fire Spin-42
+Jigglypuff:Pound-1,Defense Curl-1,Disable-9,Double Slap-14,Rest-19,Body Slam-24
+Wigglytuff:Defense Curl-1,Double Slap-1
+Zubat:Leech Life-1,Supersonic-10,Bite-15,Confuse Ray-21,Wing Attack-28,Haze-36
+Golbat:Leech Life-1,Supersonic-10,Bite-15,Confuse Ray-21,Wing Attack-32,Haze-43
+Oddish:Absorb-1,Poison Powder-15,Stun Spore-17,Sleep Powder-19,Acid-24,Petal Dance-33
+Gloom:Absorb-1,Poison Powder-15,Stun Spore-17,Sleep Powder-19,Acid-28,Petal Dance-38
+Vileplume:Absorb-1,Poison Powder-15,Stun Spore-17,Sleep Powder-19,Acid-32,Petal Dance-44
+Paras:Scratch-1,Stun Spore-13,Leech Life-20,Spore-27,Slash-34,Growth-41
+Parasect:Scratch-1,Stun Spore-13,Leech Life-20,Spore-30,Slash-39,Growth-48
+Venonat:Tackle-1,Disable-24,Poison Powder-27,Leech Life-30,Stun Spore-35,Psybeam-38
+Venomoth:Tackle-1,Disable-24,Poison Powder-27,Leech Life-30,Stun Spore-38,Psybeam-43
+Diglett:Scratch-1,Growl-5,Sand Attack-9,Dig-17,Slash-25,Earthquake-33
+Dugtrio:Scratch-1,Growl-5,Sand Attack-9,Dig-17,Slash-26,Earthquake-37
+Meowth:Scratch-1,Growl-6,Bite-12,Pay Day-17,Screech-24,Slash-33
+Persian:Scratch-1,Growl-6,Bite-12,Pay Day-17,Screech-26,Slash-37
+Psyduck:Scratch-1,Tail Whip-1,Disable-28,Confusion-31,Fury Swipes-36,Hydro Pump-43
+Golduck:Scratch-1,Tail Whip-1,Disable-28,Confusion-31,Fury Swipes-38,Hydro Pump-48
+Mankey:Scratch-1,Leer-1,Karate Chop-15,Low Kick-21,Seismic Toss-27,Thrash-33
+Primeape:Scratch-1,Leer-1,Karate Chop-15,Low Kick-21,Seismic Toss-28,Thrash-37

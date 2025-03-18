@@ -12,11 +12,17 @@ import java.util.stream.Collectors;
 import type.Type;
 
 public class PokemonFactory {
+	
+	private static final PokemonFactory instance = new PokemonFactory();
 
 	private static final String DATA_FILE = "data/pokemon_data.txt";
 	private static final Map<String, Pokemon> pokemonCache = new HashMap<>();
+	
+	public static PokemonFactory getInstance() {
+		return instance;
+	}
 
-	private static void loadPokemonData() {
+	private void loadPokemonData() {
 		try (BufferedReader br = new BufferedReader(new FileReader(DATA_FILE))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -43,7 +49,7 @@ public class PokemonFactory {
 		}
 	}
 
-	public static Pokemon createPokemon(String name) {
+	public Pokemon createPokemon(String name) {
 		if (pokemonCache.isEmpty()) {
 			loadPokemonData();
 		}
@@ -52,7 +58,7 @@ public class PokemonFactory {
 		return pokemon != null ? new PokemonImpl(pokemon) : null;
 	}
 
-	private static List<Type> loadTypes(String data) {
+	private List<Type> loadTypes(String data) {
 		String[] types = data.trim().split("\\|");
 		return Arrays.stream(types).map(type -> Type.valueOf(type.toUpperCase())).collect(Collectors.toList());
 	}

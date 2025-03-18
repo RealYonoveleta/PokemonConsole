@@ -1,12 +1,16 @@
 package battle;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 import pokemon.Pokemon;
 import pokemon.PokemonState;
 import trainer.Trainer;
+import turn.TurnManager;
 
 public class Battle {
 
 	private static final BattleUI battleUI = new BattleUI();
+	private TurnManager turnManager = new TurnManager();
 
 	Trainer player, rival;
 
@@ -16,39 +20,43 @@ public class Battle {
 	}
 
 	public void start() {
-        battleUI.displayBattleStart();
+		battleUI.displayBattleStart();
 
-        Pokemon currentPlayerPokemon;
-        Pokemon currentRivalPokemon;
+		Pokemon currentPlayerPokemon;
+		Pokemon currentRivalPokemon;
 
-        while (player.healthyPokemonCount() > 0 && rival.healthyPokemonCount() > 0) {
-            checkActivePokemon(player);
-            checkActivePokemon(rival);
+		while (player.healthyPokemonCount() > 0 && rival.healthyPokemonCount() > 0) {
+			checkActivePokemon(player);
+			checkActivePokemon(rival);
 
-            currentPlayerPokemon = this.player.getCurrentPokemon();
-            currentRivalPokemon = this.rival.getCurrentPokemon();
+			currentPlayerPokemon = this.player.getCurrentPokemon();
+			currentRivalPokemon = this.rival.getCurrentPokemon();
 
-            battleUI.showCurrentPokemonsHp(player, currentPlayerPokemon, rival, currentRivalPokemon);
+			battleUI.showCurrentPokemonsHp(player, currentPlayerPokemon, rival, currentRivalPokemon);
 
-            int option = battleUI.askForMoveChoice(currentPlayerPokemon);
-            currentPlayerPokemon.useMove(option, currentRivalPokemon);
+			int option = battleUI.askForMoveChoice(currentPlayerPokemon);
+			turnManager.addAction(currentPlayerPokemon, currentPlayerPokemon.getMove(option), currentRivalPokemon);
 
-            rival.chooseRandomMove(currentPlayerPokemon);
-        }
+			// Random ai action
+			int randomMove = ThreadLocalRandom.current().nextInt(0, currentRivalPokemon.movesKnown());
+			turnManager.addAction(currentRivalPokemon, currentRivalPokemon.getMove(randomMove), currentPlayerPokemon);
 
-        battleUI.announceWinner(player.healthyPokemonCount() > 0 ? player : rival);
-    }
+			turnManager.processTurn();
+		}
+
+		battleUI.announceWinner(player.healthyPokemonCount() > 0 ? player : rival);
+	}
 
 	private void checkActivePokemon(Trainer trainer) {
-        Pokemon trainerCurrentPokemon = trainer.getCurrentPokemon();
-        if (trainerCurrentPokemon.getState() == PokemonState.FAINTED) {
-            battleUI.announceFaint(trainerCurrentPokemon);
-            if (trainer.equals(player)) {
-                trainer.setActivePokemon();
-            } else {
-                trainer.chooseRandomPokemon();
-            }
-        }
-    }
+		Pokemon trainerCurrentPokemon = trainer.getCurrentPokemon();
+		if (trainerCurrentPokemon.getState() == PokemonState.FAINTED) {
+			battleUI.announceFaint(trainerCurrentPokemon);
+			if (trainer.equals(player)) {
+				trainer.setActivePokemon();
+			} else {
+				trainer.chooseRandomPokemon();
+			}
+		}
+	}
 
 }

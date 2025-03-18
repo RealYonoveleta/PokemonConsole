@@ -1,5 +1,5 @@
 package pokemon;
 
 public enum PokemonState {
-	NORMAL, FAINTED
+	NORMAL, FAINTED, FLINCHED, PARALYZED
 }

@@ -7,8 +7,6 @@ import type.Type;
 
 public interface Pokemon {
 	
-	public boolean useMove(int move, Pokemon target);
-	
 	public void takeDamage(int damage);
 	
 	public List<Move> getMoveset();
@@ -40,4 +38,15 @@ public interface Pokemon {
 	public int getLevel();
 	
 	public int movesKnown();
+	
+	public void levelUp();
+	
+	public void levelUp(int levels);
+
+	public void setState(PokemonState state);
+
+	public boolean hasMove(Move move);
+	
+	public Move getMove(int move);
+	
 }

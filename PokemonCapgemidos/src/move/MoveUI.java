@@ -3,12 +3,12 @@ package move;
 import io.ConsoleHandler;
 import pokemon.Pokemon;
 
-public class moveUI {
+public class MoveUI {
 	
 	private static final ConsoleHandler console = io.ConsoleHandler.getInstance();
 
     public void displayMoveUsed(String moveName, Pokemon source) {
-        console.displayMessage("%s used %s!\n", source.getName(), moveName);
+        console.displayMessage("%n%s used %s!%n", source.getName(), moveName);
     }
 
     public void displaySuperEffective() {
@@ -24,7 +24,7 @@ public class moveUI {
     }
 
     public void displayDamageDealt(Pokemon target, int damage) {
-        console.displayMessage("%s took %d damage!\n", target.getName(), damage);
+        console.displayMessage("%s took %d damage!%n", target.getName(), damage);
     }
 
     public void displayMoveFailed() {

@@ -1,11 +1,8 @@
 package move;
 
-import pokemon.Pokemon;
 import type.Type;
 
 public interface Move {
-	
-	public boolean use(Pokemon source, Pokemon target);
 	
 	public String useMessage();
 	
@@ -16,5 +13,11 @@ public interface Move {
 	public String getName();
 	
 	public MoveType getMoveType();
+
+	public int getPower();
+	
+	public int getPriority();
+	
+	public void reducePPs();
 
 }

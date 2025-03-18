@@ -10,10 +10,20 @@ import type.Type;
 
 public class MoveRepository {
 	
+	private static final MoveRepository instance = new MoveRepository();
+	
 	private static final String DATA_FILE = "data/move_data.txt";
-	private static final Map<String, Move> moveCache = new HashMap<>();
+	private final Map<String, Move> moveCache = new HashMap<>();
+	
+	private MoveRepository() {
+		loadMoveData();
+	}
+	
+	public static MoveRepository getInstance() {
+		return instance;
+	}
 
-	private static void loadMoveData() {
+	private void loadMoveData() {
 		try (BufferedReader br = new BufferedReader(new FileReader(DATA_FILE))) {
 			String line;
 			while ((line = br.readLine()) != null) {
@@ -25,7 +35,7 @@ public class MoveRepository {
 					int power = Integer.parseInt(data[1]);
 					int pps = Integer.parseInt(data[2]);
 					Type type = Type.valueOf(data[3].toUpperCase());
-					MoveType moveType = MoveType.valueOf(data[4].toUpperCase());
+					MoveType moveType = MoveType.valueOf(data[4].trim().toUpperCase());
 					
 					moveCache.put(nameKey, new MoveImpl(originalName, power, pps, type, moveType));
 				}
@@ -35,12 +45,12 @@ public class MoveRepository {
 		}
 	}
 	
-	public static Move getMove(String name) {
-		if (moveCache.isEmpty()) {
-			loadMoveData();
-		}
-
-		return moveCache.getOrDefault(name.toLowerCase(), null);
+	public Move getMove(String name) {
+		Move move = moveCache.get(name.toLowerCase());
+	    if (move == null) {
+	    	System.err.println("Move not found: " + name);
+	    }
+	    return new MoveImpl(move);
 	}
 
 }

@@ -71,6 +71,7 @@ Karate Chop,50,25,fighting,physical
 Kinesis,0,15,psychic,status
 Leech Life,80,10,bug,physical
 Leech Seed,0,10,grass,status
+Leer,0,30,normal,status 
 Lick,30,30,ghost,physical
 Light Screen,0,30,psychic,status
 Lovely Kiss,0,10,normal,status
@@ -144,6 +145,7 @@ Tackle,40,35,normal,physical
 Tail Whip,0,30,normal,status
 Take Down,90,20,normal,physical
 Teleport,0,20,psychic,status
+Thrash,90,20,normal,physical
 Thunder,110,10,electric,special
 Thunder Punch,75,15,electric,physical
 Thunder Shock,40,30,electric,special

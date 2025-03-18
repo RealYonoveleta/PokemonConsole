@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import move.Move;
+import movepool.MoveLevel;
+import movepool.MovePoolRepository;
 import type.Type;
 
 public class PokemonImpl implements Pokemon {
-	
+
 	private static final PokemonUI pokemonUI = new PokemonUI();
+	private static final MovePoolRepository movePoolRepository = MovePoolRepository.getInstance();
 
 	private String name;
 	private int hp;
@@ -32,15 +35,18 @@ public class PokemonImpl implements Pokemon {
 		this.specialAttack = specialAttack;
 		this.specialDefense = specialDefense;
 		this.speed = speed;
-		this.level = 1;
 		this.moveset = new ArrayList<Move>();
 		this.state = PokemonState.NORMAL;
+		this.level = 0;
+		
+		levelUp();
 	}
 
 	public PokemonImpl(String name, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed,
 			List<Type> types, int level) {
 		this(name, hp, attack, defense, specialAttack, specialDefense, speed, types);
 		this.level = level;
+		levelUp(level);
 	}
 
 	public PokemonImpl(String name, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed,
@@ -54,19 +60,36 @@ public class PokemonImpl implements Pokemon {
 				other.getSpecialDefense(), other.getSpeed(), other.getTypes());
 	}
 
-	
-
-	@Override
-	public boolean useMove(int move, Pokemon target) {
-		return this.moveset.get(move).use(this, target);
-	}
-
 	@Override
 	public void takeDamage(int damage) {
 		this.hp -= damage;
 		if (this.hp <= 0) {
 			this.hp = 0;
 			this.state = PokemonState.FAINTED;
+		}
+	}
+
+	@Override
+	public void levelUp() {
+		level++;
+		learnMovesOnLevelUp();
+	}
+	
+	public void levelUp(int levels) {
+		for(int i = 0; i < levels; i++) {
+			levelUp();
+			if(getLevel() != 1) 
+				pokemonUI.showLevelUpMessage(this);
+		}
+	}
+
+	private void learnMovesOnLevelUp() {
+		List<MoveLevel> possibleMoves = movePoolRepository.getMovesForPokemon(name);
+
+		for (MoveLevel moveLevel : possibleMoves) {
+			if (moveLevel.getLevel() == level) {
+				pokemonUI.learnMove(this, moveLevel.getMove());
+			}
 		}
 	}
 
@@ -105,7 +128,7 @@ public class PokemonImpl implements Pokemon {
 	public void learnMove(Move move) {
 		pokemonUI.learnMove(this, move);
 	}
-	
+
 	public void addMove(Move move) {
 		this.moveset.add(move);
 	}
@@ -114,7 +137,7 @@ public class PokemonImpl implements Pokemon {
 	public void replaceMove(Move newMove) {
 		pokemonUI.replaceMove(this, newMove);
 	}
-	
+
 	@Override
 	public void forgetMove(int move) {
 		this.moveset.remove(move);
@@ -147,6 +170,21 @@ public class PokemonImpl implements Pokemon {
 	@Override
 	public int movesKnown() {
 		return getMoveset().size();
+	}
+
+	@Override
+	public void setState(PokemonState state) {
+		this.state = state;
+	}
+
+	@Override
+	public boolean hasMove(Move move) {
+		return getMoveset().contains(move);
+	}
+
+	@Override
+	public Move getMove(int move) {
+		return this.moveset.get(move);
 	}
 
 }
