@@ -7,7 +7,9 @@ import battle.Battle;
 import move.MoveRepository;
 import pokemon.Pokemon;
 import pokemon.PokemonFactory;
-import trainer.Trainer;
+import trainer.AITrainer;
+import trainer.AbstractTrainer;
+import trainer.PlayerTrainer;
 
 public class Main {
 	
@@ -23,10 +25,10 @@ public class Main {
 		
 		List<Pokemon> pokemons2 = new ArrayList<Pokemon>();
 		pokemons2.add(pokemonFactory.createPokemon("Bulbasaur"));
-		pokemons2.add(pokemonFactory.createPokemon("Ivysaur"));
+		pokemons2.add(pokemonFactory.createPokemon("squirtle"));
 		
-		Trainer kikegu = new Trainer("Kikegu", pokemons1);
-		Trainer luisja = new Trainer("Luisja", pokemons2);
+		AbstractTrainer kikegu = new PlayerTrainer("Kikegu", pokemons1);
+		AbstractTrainer luisja = new AITrainer("Luisja", pokemons2);
 		
 		Battle battle = new Battle(kikegu, luisja);
 		

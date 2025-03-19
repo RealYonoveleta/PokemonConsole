@@ -3,6 +3,7 @@ package pokemon;
 import java.util.List;
 
 import move.Move;
+import status.Status;
 import type.Type;
 
 public interface Pokemon {
@@ -48,5 +49,15 @@ public interface Pokemon {
 	public boolean hasMove(Move move);
 	
 	public Move getMove(int move);
+
+	public void addStatus(Status status);
+	
+	public void removeStatus(Status status);
+	
+	public boolean hasStatus(Status status);
+
+	public void heal(int i);
+
+	public double getMaxHP();
 	
 }

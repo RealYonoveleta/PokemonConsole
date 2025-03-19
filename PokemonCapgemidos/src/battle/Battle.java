@@ -3,7 +3,6 @@ package battle;
 import java.util.concurrent.ThreadLocalRandom;
 
 import pokemon.Pokemon;
-import pokemon.PokemonState;
 import trainer.Trainer;
 import turn.TurnManager;
 
@@ -25,38 +24,25 @@ public class Battle {
 		Pokemon currentPlayerPokemon;
 		Pokemon currentRivalPokemon;
 
-		while (player.healthyPokemonCount() > 0 && rival.healthyPokemonCount() > 0) {
-			checkActivePokemon(player);
-			checkActivePokemon(rival);
-
+		while (player.getHealthyPokemonCount() > 0 && rival.getHealthyPokemonCount() > 0) {
 			currentPlayerPokemon = this.player.getCurrentPokemon();
 			currentRivalPokemon = this.rival.getCurrentPokemon();
 
 			battleUI.showCurrentPokemonsHp(player, currentPlayerPokemon, rival, currentRivalPokemon);
 
 			int option = battleUI.askForMoveChoice(currentPlayerPokemon);
-			turnManager.addAction(currentPlayerPokemon, currentPlayerPokemon.getMove(option), currentRivalPokemon);
+			turnManager.addAction(player, currentPlayerPokemon, currentPlayerPokemon.getMove(option),
+					currentRivalPokemon, rival);
 
 			// Random ai action
 			int randomMove = ThreadLocalRandom.current().nextInt(0, currentRivalPokemon.movesKnown());
-			turnManager.addAction(currentRivalPokemon, currentRivalPokemon.getMove(randomMove), currentPlayerPokemon);
+			turnManager.addAction(rival, currentRivalPokemon, currentRivalPokemon.getMove(randomMove),
+					currentPlayerPokemon, player);
 
 			turnManager.processTurn();
 		}
 
-		battleUI.announceWinner(player.healthyPokemonCount() > 0 ? player : rival);
-	}
-
-	private void checkActivePokemon(Trainer trainer) {
-		Pokemon trainerCurrentPokemon = trainer.getCurrentPokemon();
-		if (trainerCurrentPokemon.getState() == PokemonState.FAINTED) {
-			battleUI.announceFaint(trainerCurrentPokemon);
-			if (trainer.equals(player)) {
-				trainer.setActivePokemon();
-			} else {
-				trainer.chooseRandomPokemon();
-			}
-		}
+		battleUI.announceWinner(player.getHealthyPokemonCount() > 0 ? player : rival);
 	}
 
 }

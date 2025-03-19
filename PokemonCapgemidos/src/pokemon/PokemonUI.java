@@ -67,5 +67,17 @@ public class PokemonUI {
 	public void showLevelUpMessage(Pokemon pokemon) {
 		console.displayMessage("%nCongratulations! Your %s grew to level %d!%n", pokemon.getName(), pokemon.getLevel());
 	}
+	
+	public void showNoPpsLeftMessage(Pokemon pokemon, Move move) {
+		console.displayMessage("%s has no PP left for %s!\n", pokemon.getName(), move.getName());
+	}
+	
+	public void showMoveNotLearntMessage(Pokemon pokemon, Move move) {
+		console.displayMessage("%s does not know %s!\n", pokemon.getName(), move.getName());
+	}
+	
+	public void showFaintedMessage(Pokemon pokemon) {
+		console.displayMessage("%s has fainted!\n", pokemon.getName());
+	}
 
 }

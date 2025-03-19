@@ -1,8 +1,18 @@
 package move;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import damage.DamageCalculator;
+import damage.Gen1Calculator;
+import effect.Effect;
+import pokemon.Pokemon;
 import type.Type;
+import type.TypeChart;
 
 public class MoveImpl implements Move {
+	
+	private static final MoveUI moveUI = new MoveUI();
 
 	private String name;
 	private int power;
@@ -11,6 +21,8 @@ public class MoveImpl implements Move {
 	private Type type;
 	private MoveType moveType;
 	private int priority;
+	
+	List<Effect> effects = new ArrayList<>();
 
 	public MoveImpl(String name, int power, int pps, Type type, MoveType moveType) {
 		this.name = name;
@@ -78,6 +90,42 @@ public class MoveImpl implements Move {
 
 	public int getPriority() {
 		return priority;
+	}
+
+	@Override
+	public List<Effect> getEffects() {
+		return new ArrayList<>(this.effects);
+	}
+	
+	private void dealDamage(Pokemon user, Pokemon target, DamageCalculator damageCalculator) {
+		double typeEffectiveness = TypeChart.getEffectiveness(this.type, target.getTypes());
+		double stabMultiplier = user.getTypes().contains(this.type) ? 1.5 : 1.0;
+	    int damage = damageCalculator.calculateDamage(user, this, target, typeEffectiveness, stabMultiplier);
+	    target.takeDamage(damage);
+	    moveUI.displayAttackMessage(user, this, target, damage);
+	    moveUI.displayEffectivenessMessage(typeEffectiveness);
+	}
+
+	@Override
+	public void execute(Pokemon user, Pokemon target) {
+		execute(user, target, new Gen1Calculator());
+	}
+	
+	@Override
+	public void execute(Pokemon user, Pokemon target, DamageCalculator damageCalculator) {
+		for (Effect effect : effects) {
+	        effect.apply(user, target);
+	    }
+
+	    if (this.power > 0) { // Only deal damage if the move has power
+	        dealDamage(user, target, damageCalculator);
+	    }
+	    
+	    if(getMoveType() == MoveType.STATUS) {
+	    	moveUI.displayStatusMoveMessage(user, this, target);
+	    }
+	    
+	    reducePPs();
 	}
 
 }

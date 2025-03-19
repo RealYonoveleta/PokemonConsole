@@ -1,5 +1,10 @@
 package move;
 
+import java.util.List;
+
+import damage.DamageCalculator;
+import effect.Effect;
+import pokemon.Pokemon;
 import type.Type;
 
 public interface Move {
@@ -19,5 +24,11 @@ public interface Move {
 	public int getPriority();
 	
 	public void reducePPs();
+
+	public List<Effect> getEffects();
+	
+	public void execute(Pokemon user, Pokemon target);
+	
+	public void execute(Pokemon user, Pokemon target, DamageCalculator damageCalculator);
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import move.Move;
 import movepool.MoveLevel;
 import movepool.MovePoolRepository;
+import status.Status;
 import type.Type;
 
 public class PokemonImpl implements Pokemon {
@@ -14,6 +15,7 @@ public class PokemonImpl implements Pokemon {
 	private static final MovePoolRepository movePoolRepository = MovePoolRepository.getInstance();
 
 	private String name;
+	private int maxHp;
 	private int hp;
 	private List<Move> moveset;
 	private PokemonState state;
@@ -24,11 +26,14 @@ public class PokemonImpl implements Pokemon {
 	private int specialDefense;
 	private int speed;
 	private int level;
+	
+	List<Status> statuses = new ArrayList<Status>();
 
-	public PokemonImpl(String name, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed,
+	public PokemonImpl(String name, int maxHp, int attack, int defense, int specialAttack, int specialDefense, int speed,
 			List<Type> types) {
 		this.name = name;
-		this.hp = hp;
+		this.maxHp = maxHp;
+		this.hp = maxHp;
 		this.types = types;
 		this.attack = attack;
 		this.defense = defense;
@@ -42,16 +47,16 @@ public class PokemonImpl implements Pokemon {
 		levelUp();
 	}
 
-	public PokemonImpl(String name, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed,
+	public PokemonImpl(String name, int maxHp, int attack, int defense, int specialAttack, int specialDefense, int speed,
 			List<Type> types, int level) {
-		this(name, hp, attack, defense, specialAttack, specialDefense, speed, types);
+		this(name, maxHp, attack, defense, specialAttack, specialDefense, speed, types);
 		this.level = level;
 		levelUp(level);
 	}
 
-	public PokemonImpl(String name, int hp, int attack, int defense, int specialAttack, int specialDefense, int speed,
+	public PokemonImpl(String name, int maxHp, int attack, int defense, int specialAttack, int specialDefense, int speed,
 			int level, List<Type> types, List<Move> moveset) {
-		this(name, hp, attack, defense, specialAttack, specialDefense, speed, types, level);
+		this(name, maxHp, attack, defense, specialAttack, specialDefense, speed, types, level);
 		this.moveset = new ArrayList<>(moveset);
 	}
 
@@ -185,6 +190,31 @@ public class PokemonImpl implements Pokemon {
 	@Override
 	public Move getMove(int move) {
 		return this.moveset.get(move);
+	}
+
+	@Override
+	public void addStatus(Status status) {
+	    if (!hasStatus(status)) {
+	        statuses.add(status);
+	    }
+	}
+
+	public void removeStatus(Status status) {
+	    statuses.remove(status);
+	}
+
+	public boolean hasStatus(Status status) {
+	    return statuses.contains(status);
+	}
+
+	@Override
+	public void heal(int hp) {
+		this.hp += hp;
+	}
+
+	@Override
+	public double getMaxHP() {
+		return this.maxHp;
 	}
 
 }

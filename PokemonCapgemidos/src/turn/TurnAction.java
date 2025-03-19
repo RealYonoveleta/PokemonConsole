@@ -1,51 +1,65 @@
 package turn;
 
-import io.ConsoleHandler;
+import effect.Effect;
 import move.Move;
 import pokemon.Pokemon;
-import type.TypeChart;
+import pokemon.PokemonUI;
+import trainer.Trainer;
 
 public class TurnAction {
 	
-	private static final ConsoleHandler console = ConsoleHandler.getInstance();
+	private static final PokemonUI pokemonUI = new PokemonUI();;
 	
+	Trainer trainer;
     Pokemon user;
-    Pokemon target;
     Move move;
+    Pokemon target;
+    Trainer rival;
 
-    public TurnAction(Pokemon user, Move move, Pokemon target) {
+    public TurnAction(Trainer trainer, Pokemon user, Move move, Pokemon target, Trainer rival) {
+    	this.trainer = trainer;
         this.user = user;
         this.move = move;
         this.target = target;
+        this.rival = rival;
     }
     
     public void run() {
         if (!user.hasMove(move)) {
-            console.displayMessage("%s does not know %s!\n", user.getName(), move.getName());
+            pokemonUI.showMoveNotLearntMessage(user, move);
             return;
         }
 
         if (move.getPPs() <= 0) {
-            console.displayMessage("%s has no PP left for %s!\n", user.getName(), move.getName());
+            pokemonUI.showNoPpsLeftMessage(user, move);
             return;
         }
-
-        int damage = calculateDamage();
-        target.takeDamage(damage);
-        move.reducePPs();
-
-        console.displayMessage("%s used %s! %s took %d damage!\n", 
-            user.getName(), move.getName(), target.getName(), damage);
+        
+        for(Effect effect : move.getEffects()) {
+        	effect.apply(user, target);
+        }
+        
+        move.execute(user, target);
     }
 
-    private int calculateDamage() {
-        double stabMultiplier = user.getTypes().contains(move.getType()) ? 1.5 : 1.0;
-        double typeEffectiveness = TypeChart.getEffectiveness(move.getType(), target.getTypes());
+	public Trainer getTrainer() {
+		return trainer;
+	}
 
-        // Standard Pokémon damage formula
-        int baseDamage = (int) (((2 * user.getLevel() / 5.0 + 2) * move.getPower() * (user.getAttack() / (double) target.getDefense()) / 50 + 2) 
-            * stabMultiplier * typeEffectiveness);
+	public Pokemon getUser() {
+		return user;
+	}
 
-        return Math.max(1, baseDamage); // Ensure at least 1 damage is dealt
-    }
+	public Pokemon getTarget() {
+		return target;
+	}
+
+	public Move getMove() {
+		return move;
+	}
+
+	public Trainer getRival() {
+		return rival;
+	}
+
 }
