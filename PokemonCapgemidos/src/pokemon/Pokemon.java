@@ -3,6 +3,7 @@ package pokemon;
 import java.util.List;
 
 import move.Move;
+import stat.StatType;
 import status.Status;
 import type.Type;
 
@@ -23,8 +24,6 @@ public interface Pokemon {
 	public void learnMove(Move move);
 	
 	public void forgetMove(int move);
-	
-	public void replaceMove(Move newMove);
 	
 	public int getAttack();
 	
@@ -54,10 +53,24 @@ public interface Pokemon {
 	
 	public void removeStatus(Status status);
 	
-	public boolean hasStatus(Status status);
+	public boolean hasStatus(Class<? extends Status> statusType);
 
 	public void heal(int i);
 
 	public double getMaxHP();
+	
+	public void modifyStat(StatType statType, int amount);
+	
+	public int getModifiedStat(StatType statType);
+	
+	public void resetAllStats();
+
+	void replaceMove(Move newMove);
+	
+	boolean canMove();
+	
+	void setCanMove(boolean canMove);
+
+	public List<Status> getStatuses();
 	
 }

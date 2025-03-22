@@ -1,9 +1,10 @@
 package turn;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-import io.ConsoleHandler;
 import move.Move;
 import pokemon.Pokemon;
 import pokemon.PokemonState;
@@ -12,60 +13,88 @@ import status.Status;
 import trainer.Trainer;
 
 public class TurnManager {
-	
+
 	private static final PokemonUI pokemonUI = new PokemonUI();
-	private static final ConsoleHandler console = ConsoleHandler.getInstance();
-	
-    private Queue<TurnAction> actionQueue;
 
-    public TurnManager() {
-        this.actionQueue = new PriorityQueue<>(new TurnComparator());
-    }
+	private Queue<TurnAction> actionQueue;
+	private List<TurnAction> actionsPerformed;
 
-    public void addAction(Trainer trainer, Pokemon user, Move move, Pokemon target, Trainer rival) {
-        actionQueue.add(new TurnAction(trainer, user, move, target, rival));
-    }
+	public TurnManager() {
+		this.actionQueue = new PriorityQueue<>(new TurnComparator());
+		this.actionsPerformed = new ArrayList<>();
+	}
 
-    public void processTurn() {
-        while (!actionQueue.isEmpty()) {
-            TurnAction action = actionQueue.poll(); // Get the highest-priority action
+	public void addAction(Trainer trainer, Pokemon user, Move move, Pokemon target, Trainer rival) {
+		actionQueue.add(new TurnAction(trainer, user, move, target, rival));
+	}
 
-            if (action.user.getHp() > 0) { // Ensure Pokémon is still active
-                if (!canExecuteMove(action)) {
-                    continue; // Skip if flinched or paralyzed
-                }
-                action.run();
-            } 
-            
-            checkForFaintedPokemon(action.getRival(), action.getTarget());
-        }
-        applyEndOfTurnEffects(); // Handle weather, poison, burn, etc.
-    }
+	public void processTurn() {
+		// Start of turn: apply START_OF_TURN statuses
+		for (TurnAction action : actionQueue) {
+			applyStartOfTurnStatuses(action.getUser());
+		}
 
-    private boolean canExecuteMove(TurnAction action) {
-        if (action.user.hasStatus(Status.FLINCHED)) {
-            console.displayMessage("%s flinched and couldn't move!", action.user.getName());
-            action.user.setState(PokemonState.NORMAL);
-            return false;
-        }
-        if (action.user.hasStatus(Status.PARALYZED) && Math.random() < 0.25) {
-            console.displayMessage("%s is paralyzed and couldn't move!", action.user.getName());
-            return false;
-        }
-        return true;
-    }
-    
-    private void checkForFaintedPokemon(Trainer trainer, Pokemon pokemon) {
-        if (pokemon.getState() == PokemonState.FAINTED) {
-            // Trigger fainted Pokémon logic
-            pokemonUI.showFaintedMessage(pokemon);
-            trainer.setActivePokemon();
-        }
-    }
+		while (!actionQueue.isEmpty()) {
+			TurnAction action = actionQueue.poll(); // Get the highest-priority action
+			actionsPerformed.add(action);
 
-    private void applyEndOfTurnEffects() {
-        
-    }
-    
+			if (action.getUser().getHp() > 0) { // Ensure Pokémon is still active
+				// During turn: apply DURING_TURN statuses
+				applyDuringTurnStatuses(action.getUser());
+
+				if (!canExecuteMove(action)) {
+					continue;
+				}
+				action.run();
+			}
+
+			checkForFaintedPokemon(action.getRival(), action.getTarget());
+		}
+
+		// End of turn: apply END_OF_TURN statuses
+		for (TurnAction action : actionsPerformed) {
+			applyEndOfTurnStatuses(action.getUser());
+			checkForFaintedPokemon(action.getTrainer(), action.getUser());
+		}
+
+		// Clear actions for the next turn
+		actionsPerformed.clear();
+	}
+
+	private boolean canExecuteMove(TurnAction action) {
+		return action.getUser().canMove();
+	}
+
+	// Method for applying START_OF_TURN statuses
+	private void applyStartOfTurnStatuses(Pokemon pokemon) {
+	    for (int i = pokemon.getStatuses().size() - 1; i >= 0; i--) {
+	        Status status = pokemon.getStatuses().get(i);
+	        status.onStartOfTurn(pokemon);
+	    }
+	}
+
+	// Method for applying DURING_TURN statuses
+	private void applyDuringTurnStatuses(Pokemon pokemon) {
+	    for (int i = pokemon.getStatuses().size() - 1; i >= 0; i--) {
+	        Status status = pokemon.getStatuses().get(i);
+	        status.onDuringTurn(pokemon);
+	    }
+	}
+
+	// Method for applying END_OF_TURN statuses
+	private void applyEndOfTurnStatuses(Pokemon pokemon) {
+	    for (int i = pokemon.getStatuses().size() - 1; i >= 0; i--) {
+	        Status status = pokemon.getStatuses().get(i);
+	        status.onEndOfTurn(pokemon);
+	    }
+	}
+
+	private void checkForFaintedPokemon(Trainer trainer, Pokemon pokemon) {
+		if (pokemon.getState() == PokemonState.FAINTED) {
+			// Trigger fainted Pokémon logic
+			pokemonUI.showFaintedMessage(pokemon);
+			trainer.setActivePokemon();
+		}
+	}
+
 }
-

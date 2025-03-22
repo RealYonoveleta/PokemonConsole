@@ -1,0 +1,171 @@
+[
+	{
+	  "name": "Absorb",
+	  "power": 20,
+	  "pp": 25,
+	  "type": "grass",
+	  "category": "special",
+	  "effects": []
+	},
+	{
+	  "name": "Acid",
+	  "power": 40,
+	  "pp": 30,
+	  "type": "poison",
+	  "category": "special",
+	  "effects": []
+	},
+	{
+	  "name": "Acid Armor",
+	  "power": 0,
+	  "pp": 40,
+	  "type": "poison",
+	  "category": "status",
+	  "effects": []
+	},
+	{
+	  "name": "Agility",
+	  "power": 0,
+	  "pp": 30,
+	  "type": "psychic",
+	  "category": "status",
+	  "effects": []
+	},
+	{
+	  "name": "Amnesia",
+	  "power": 0,
+	  "pp": 20,
+	  "type": "psychic",
+	  "category": "status",
+	  "effects": []
+	},
+	{
+	  "name": "Aurora Beam",
+	  "power": 65,
+	  "pp": 20,
+	  "type": "ice",
+	  "category": "special",
+	  "effects": []
+	},
+	{
+	  "name": "Barrage",
+	  "power": 15,
+	  "pp": 20,
+	  "type": "normal",
+	  "category": "physical",
+	  "effects": []
+	},
+	{
+	  "name": "Barrier",
+	  "power": 0,
+	  "pp": 30,
+	  "type": "psychic",
+	  "category": "status",
+	  "effects": []
+	},
+	{
+	  "name": "Bite",
+	  "power": 60,
+	  "pp": 25,
+	  "type": "dark",
+	  "category": "physical",
+	  "effects": []
+	},
+	{
+	  "name": "Blizzard",
+	  "power": 110,
+	  "pp": 5,
+	  "type": "ice",
+	  "category": "special",
+	  "effects": []
+	},
+	{
+	  "name": "Body Slam",
+	  "power": 85,
+	  "pp": 15,
+	  "type": "normal",
+	  "category": "physical",
+	  "effects": []
+	},
+	{
+	  "name": "Bone Club",
+	  "power": 65,
+	  "pp": 20,
+	  "type": "ground",
+	  "category": "physical",
+	  "effects": []
+	},
+	{
+	  "name": "Bonemerang",
+	  "power": 50,
+	  "pp": 10,
+	  "type": "ground",
+	  "category": "physical",
+	  "effects": []
+	},
+	{
+	  "name": "Bubble",
+	  "power": 40,
+	  "pp": 30,
+	  "type": "water",
+	  "category": "special",
+	  "effects": []
+	},
+	{
+	  "name": "Bubble Beam",
+	  "power": 65,
+	  "pp": 20,
+	  "type": "water",
+	  "category": "special",
+	  "effects": []
+	},
+	{
+	  "name": "Clamp",
+	  "power": 35,
+	  "pp": 10,
+	  "type": "water",
+	  "category": "physical",
+	  "effects": []
+	},
+	{
+	  "name": "Confuse Ray",
+	  "power": 0,
+	  "pp": 10,
+	  "type": "ghost",
+	  "category": "status",
+	  "effects": []
+	},
+	{
+	  "name": "Confusion",
+	  "power": 50,
+	  "pp": 25,
+	  "type": "psychic",
+	  "category": "special",
+	  "effects": []
+	},
+	{
+	  "name": "Disable",
+	  "power": 0,
+	  "pp": 20,
+	  "type": "normal",
+	  "category": "status",
+	  "effects": []
+	},
+	{
+	  "name": "Dizzy Punch",
+	  "power": 70,
+	  "pp": 10,
+	  "type": "normal",
+	  "category": "physical",
+	  "effects": []
+	},
+	{
+		"name": "Ember",
+		"power": 40,
+		"pp": 25,
+		"type": "fire",
+		"category": "special",
+		"effects": [{"type": "status", "effect": {"status": "burn", "chance": 0.1}}]
+	}
+]
+

@@ -14,7 +14,7 @@ public class BattleUI {
 	}
 
 	public void showCurrentPokemonsHp(Trainer player, Pokemon playerPokemon, Trainer rival, Pokemon rivalPokemon) {
-		console.displayMessage("%n%s(%s Lv%d): %dhp vs %s(%s Lv%d): %dhp%n", player.getName(),
+		console.displayMessage("%n%n%s(%s Lv%d): %dhp vs %s(%s Lv%d): %dhp%n", player.getName(),
 				playerPokemon.getName(), playerPokemon.getLevel(), playerPokemon.getHp(), rival.getName(),
 				rivalPokemon.getName(), rivalPokemon.getLevel(), rivalPokemon.getHp());
 	}

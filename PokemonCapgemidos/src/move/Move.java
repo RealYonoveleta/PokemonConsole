@@ -9,8 +9,6 @@ import type.Type;
 
 public interface Move {
 	
-	public String useMessage();
-	
 	public int getPPs();
 	
 	public Type getType();
@@ -30,5 +28,7 @@ public interface Move {
 	public void execute(Pokemon user, Pokemon target);
 	
 	public void execute(Pokemon user, Pokemon target, DamageCalculator damageCalculator);
+	
+	public void addEffect(Effect effect);
 
 }

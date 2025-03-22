@@ -19,6 +19,14 @@ public class ConsoleHandler {
 		return instance;
 	}
 	
+	public void displayMessage(String message, ConsoleColor color) {
+		System.out.println(color + message + ConsoleColor.RESET);
+	}
+	
+	public void displayMessage(String format, ConsoleColor color, Object... args) {
+		System.out.printf(color + format + ConsoleColor.RESET, args);
+	}
+	
 	public void displayMessage(String message) {
 		System.out.println(message);
 	}

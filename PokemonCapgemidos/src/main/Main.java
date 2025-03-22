@@ -1,15 +1,9 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import battle.Battle;
+import cache.MoveCache;
+import move.Move;
 import move.MoveRepository;
-import pokemon.Pokemon;
 import pokemon.PokemonFactory;
-import trainer.AITrainer;
-import trainer.AbstractTrainer;
-import trainer.PlayerTrainer;
 
 public class Main {
 	
@@ -17,11 +11,20 @@ public class Main {
 	public static final MoveRepository moveRepository = MoveRepository.getInstance();
 
 	public static void main(String[] args) {
-		List<Pokemon> pokemons1 = new ArrayList<Pokemon>();
+		
+		MoveCache moves = MoveCache.getInstance();
+		
+		for(Move move : moves.getAllMoves()) {
+			System.out.println(move);
+		}
+		
+		/*List<Pokemon> pokemons1 = new ArrayList<Pokemon>();
 		Pokemon pokemon = pokemonFactory.createPokemon("Charmander");
-		pokemon.learnMove(moveRepository.getMove("flamethrower"));
+		Move move = moveRepository.getMove("Ember");
+		move.addEffect(new StatusEffect(new Flinch(), 1));
+		move.addEffect(new StatusEffect(new Burn(), 1));
+		pokemon.learnMove(move);
 		pokemons1.add(pokemon);
-		pokemons1.add(pokemonFactory.createPokemon("Bulbasaur"));
 		
 		List<Pokemon> pokemons2 = new ArrayList<Pokemon>();
 		pokemons2.add(pokemonFactory.createPokemon("Bulbasaur"));
@@ -32,7 +35,7 @@ public class Main {
 		
 		Battle battle = new Battle(kikegu, luisja);
 		
-		battle.start();	
+		battle.start();*/
 	}
 
 }

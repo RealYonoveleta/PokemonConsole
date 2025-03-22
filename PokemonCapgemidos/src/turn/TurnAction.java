@@ -1,6 +1,5 @@
 package turn;
 
-import effect.Effect;
 import move.Move;
 import pokemon.Pokemon;
 import pokemon.PokemonUI;
@@ -10,11 +9,11 @@ public class TurnAction {
 	
 	private static final PokemonUI pokemonUI = new PokemonUI();;
 	
-	Trainer trainer;
-    Pokemon user;
-    Move move;
-    Pokemon target;
-    Trainer rival;
+	private Trainer trainer;
+    private Pokemon user;
+    private Move move;
+    private Pokemon target;
+    private Trainer rival;
 
     public TurnAction(Trainer trainer, Pokemon user, Move move, Pokemon target, Trainer rival) {
     	this.trainer = trainer;
@@ -33,10 +32,6 @@ public class TurnAction {
         if (move.getPPs() <= 0) {
             pokemonUI.showNoPpsLeftMessage(user, move);
             return;
-        }
-        
-        for(Effect effect : move.getEffects()) {
-        	effect.apply(user, target);
         }
         
         move.execute(user, target);

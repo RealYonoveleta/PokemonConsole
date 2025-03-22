@@ -16,7 +16,6 @@ public class MoveImpl implements Move {
 
 	private String name;
 	private int power;
-	private String useMessage;
 	private int pps;
 	private Type type;
 	private MoveType moveType;
@@ -30,14 +29,13 @@ public class MoveImpl implements Move {
 		this.pps = pps;
 		this.type = type;
 		this.moveType = moveType;
-		this.useMessage = this.name;
 	}
-
-	public MoveImpl(String name, int power, int pps, Type type, MoveType moveType, String useMessage) {
+	
+	public MoveImpl(String name, int power, int pps, Type type, MoveType moveType, List<Effect> effects) {
 		this(name, power, pps, type, moveType);
-		this.useMessage = useMessage;
+		this.effects = effects;
 	}
-
+ 
 	public MoveImpl(Move other) {
 		if (other == null) {
 	        System.err.println("Warning: Attempted to create MoveImpl from a null Move.");
@@ -69,11 +67,6 @@ public class MoveImpl implements Move {
 	}
 
 	@Override
-	public String useMessage() {
-		return this.useMessage;
-	}
-
-	@Override
 	public int getPPs() {
 		return this.pps;
 	}
@@ -97,6 +90,11 @@ public class MoveImpl implements Move {
 		return new ArrayList<>(this.effects);
 	}
 	
+	@Override
+	public void addEffect(Effect effect) {
+		this.effects.add(effect);
+	}
+	
 	private void dealDamage(Pokemon user, Pokemon target, DamageCalculator damageCalculator) {
 		double typeEffectiveness = TypeChart.getEffectiveness(this.type, target.getTypes());
 		double stabMultiplier = user.getTypes().contains(this.type) ? 1.5 : 1.0;
@@ -113,12 +111,12 @@ public class MoveImpl implements Move {
 	
 	@Override
 	public void execute(Pokemon user, Pokemon target, DamageCalculator damageCalculator) {
+		if (this.power > 0) { // Only deal damage if the move has power
+	        dealDamage(user, target, damageCalculator);
+	    }
+		
 		for (Effect effect : effects) {
 	        effect.apply(user, target);
-	    }
-
-	    if (this.power > 0) { // Only deal damage if the move has power
-	        dealDamage(user, target, damageCalculator);
 	    }
 	    
 	    if(getMoveType() == MoveType.STATUS) {

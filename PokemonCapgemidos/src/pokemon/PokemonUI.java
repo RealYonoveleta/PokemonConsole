@@ -13,47 +13,6 @@ public class PokemonUI {
 		console.displayList("", pokemon.getMoveset().stream().map(Move::getName).toArray(String[]::new));
 	}
 
-	public void learnMove(Pokemon pokemon, Move newMove) {
-		if (pokemon.movesKnown() == 4) {
-			console.displayMessage("\n%s is trying to learn %s but can't learn more moves\n", pokemon.getName(),
-					newMove.getName());
-			int option = console.askForChoice(
-					String.format("Do you want to forget a move to learn %s?\n", newMove.getName()), "Yes", "No");
-			if (option == 0) {
-				replaceMove(pokemon, newMove);
-			} else {
-				console.displayMessage("%s not learned\n", newMove.getName());
-			}
-		} else {
-			((PokemonImpl) pokemon).addMove(newMove);
-			if(pokemon.getLevel() != 1) 
-				console.displayMessage("%s learned %s!\n", pokemon.getName(), newMove.getName());
-		}
-	}
-
-	public void replaceMove(Pokemon pokemon, Move newMove) {
-		// Display available moves for forgetting
-		int option = console.askForChoice(
-				String.format("%s wants to learn %s, but it already knows 4 moves.\nWhat move should be forgotten?",
-						pokemon.getName(), newMove.getName()),
-				pokemon.getMoveset().stream().map(Move::getName).toArray(String[]::new));
-
-		// Move being forgotten
-		Move forgottenMove = pokemon.getMoveset().get(option);
-
-		// Mimic Pokémon hesitation before forgetting
-		console.displayMessage("%s is trying to forget %s...\n", pokemon.getName(), forgottenMove.getName());
-		console.displayMessage("1... 2... and... ...\n");
-
-		// Forget the move and learn the new one
-		pokemon.forgetMove(option);
-		((PokemonImpl) pokemon).addMove(newMove);
-
-		// Display move learned message
-		console.displayMessage("%s forgot how to use %s.\n", pokemon.getName(), forgottenMove.getName());
-		console.displayMessage("And it learned %s!\n", newMove.getName());
-	}
-
 	public void showMoveset(List<Move> moves) {
 		console.displayMessage("%-3s %-15s %-10s %-6s %-10s%n", "#", "Move", "Power", "PPs", "Type"); // Header
 		console.displayMessage("--------------------------------------------");
@@ -67,17 +26,45 @@ public class PokemonUI {
 	public void showLevelUpMessage(Pokemon pokemon) {
 		console.displayMessage("%nCongratulations! Your %s grew to level %d!%n", pokemon.getName(), pokemon.getLevel());
 	}
-	
+
 	public void showNoPpsLeftMessage(Pokemon pokemon, Move move) {
 		console.displayMessage("%s has no PP left for %s!\n", pokemon.getName(), move.getName());
 	}
-	
+
 	public void showMoveNotLearntMessage(Pokemon pokemon, Move move) {
 		console.displayMessage("%s does not know %s!\n", pokemon.getName(), move.getName());
 	}
-	
+
 	public void showFaintedMessage(Pokemon pokemon) {
-		console.displayMessage("%s has fainted!\n", pokemon.getName());
+		console.displayMessage("%n%s has fainted!%n", pokemon.getName());
+	}
+
+	public void showCantLearnMoreMovesMessage(Pokemon pokemon, Move newMove) {
+		console.displayMessage("\n%s is trying to learn %s but can't learn more moves\n", pokemon.getName(),
+				newMove.getName());
+	}
+
+	public int askToForgetMove(Move newMove) {
+		return console.askForChoice(String.format("Do you want to forget a move to learn %s?\n", newMove.getName()),
+				"Yes", "No");
+	}
+
+	public void showMoveLearnedMessage(Pokemon pokemon, Move newMove) {
+		console.displayMessage("%s learned %s!\n", pokemon.getName(), newMove.getName());
+	}
+
+	public void showMoveNotLearned(Move newMove) {
+		console.displayMessage("%s not learned\n.", newMove.getName());
+	}
+
+	public int askForMoveToForget(Pokemon pokemon) {
+		return console.askForChoiceArray("Select a move: ",
+				pokemon.getMoveset().stream().map(Move::getName).toArray(String[]::new));
+	}
+
+	public void showMoveReplacedMessage(Pokemon pokemon, Move oldMove, Move newMove) {
+		console.displayMessage("%s forgot %s and learned %s!\n", pokemon.getName(), oldMove.getName(),
+				newMove.getName());
 	}
 
 }
