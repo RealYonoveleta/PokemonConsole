@@ -1,7 +1,10 @@
 package status;
 
+import annotation.StatusType;
+import parse.deserialize.StatusDeserializer;
 import pokemon.Pokemon;
 
+@StatusType(name = "paralysis", deserializer = StatusDeserializer.class)
 public class Paralysis extends AbstractStatus {
 
 	public Paralysis() {

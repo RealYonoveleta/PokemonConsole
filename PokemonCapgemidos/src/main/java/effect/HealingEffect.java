@@ -1,7 +1,10 @@
 package effect;
 
+import annotation.EffectType;
+import parse.deserialize.effect.HealingEffectDeserializer;
 import pokemon.Pokemon;
 
+@EffectType(name = "heal", deserializer = HealingEffectDeserializer.class)
 public class HealingEffect implements Effect {
     private final double healPercentage;
 

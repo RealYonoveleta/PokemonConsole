@@ -1,7 +1,10 @@
 package status;
 
+import annotation.StatusType;
+import parse.deserialize.StatusDeserializer;
 import pokemon.Pokemon;
 
+@StatusType(name = "flinch", deserializer = StatusDeserializer.class)
 public class Flinch extends AbstractStatus {
 	
     public Flinch() {

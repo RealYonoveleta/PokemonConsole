@@ -11,20 +11,22 @@ import com.google.gson.reflect.TypeToken;
 import move.Move;
 import move.MoveImpl;
 
-public class MoveParser extends AbstractParser<Move> {
+public class MoveParser implements Parser<Move> {
 
 	private String moveFile;
-	
+
 	public MoveParser(String moveFile) {
 		this.moveFile = moveFile;
 	}
 
 	@Override
 	public List<Move> parse() throws JsonIOException, JsonSyntaxException, FileNotFoundException {
-	    // Parse the JSON from the file into a List of MoveImpl objects
-	    List<Move> moves = gson.fromJson(new FileReader(moveFile), new TypeToken<List<MoveImpl>>() {}.getType());
-	    
-	    return moves;
+		// Parse the JSON from the file into a List of MoveImpl objects
+		List<Move> moves = GsonRegistry.getInstance().getGson().fromJson(new FileReader(moveFile),
+				new TypeToken<List<MoveImpl>>() {
+				}.getType());
+
+		return moves;
 	}
 
 }

@@ -6,7 +6,7 @@ import status.Status;
 
 public class EffectUI {
 	
-	private static final ConsoleHandler console = io.ConsoleHandler.getInstance();
+	private static final ConsoleHandler console = ConsoleHandler.getInstance();
 	
 	public void displayEffectAppliedMessage(Pokemon pokemon, Status status) {
 		console.displayMessage(pokemon.getName() + " was inflicted with " + status);

@@ -1,10 +1,13 @@
 package status;
 
+import annotation.StatusType;
 import io.ConsoleColor;
 import io.ConsoleHandler;
+import parse.deserialize.StatusDeserializer;
 import pokemon.Pokemon;
 import stat.StatType;
 
+@StatusType(name = "burn", deserializer = StatusDeserializer.class)
 public class Burn extends AbstractStatus {
 	
 	private static final ConsoleHandler console = ConsoleHandler.getInstance();

@@ -20,7 +20,7 @@ public class EffectDeserializer implements JsonDeserializer<Effect> {
         JsonObject effect = jsonObject.get("effect").getAsJsonObject();
 
         // Retrieve class and creator from registry
-        Class<? extends Effect> effectClass = EffectRegistry.getEffectClass(effectType);
+        Class<? extends Effect> effectClass = EffectRegistry.getInstance().get(effectType);
         
         if (effectClass == null) {
             throw new JsonParseException("Unknown effect type: " + effectType);

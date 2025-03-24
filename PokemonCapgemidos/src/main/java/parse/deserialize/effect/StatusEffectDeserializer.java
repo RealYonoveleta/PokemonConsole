@@ -10,7 +10,6 @@ import com.google.gson.JsonParseException;
 
 import effect.Effect;
 import effect.StatusEffect;
-import registry.StatusRegistry;
 import status.Status;
 
 public class StatusEffectDeserializer implements JsonDeserializer<Effect> {
@@ -18,17 +17,12 @@ public class StatusEffectDeserializer implements JsonDeserializer<Effect> {
 	@Override
     public Effect deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         JsonObject jsonObject = json.getAsJsonObject();
-        String statusType = jsonObject.get("status").getAsString();
+        JsonObject statusObj = jsonObject.get("status").getAsJsonObject();
         double chance = jsonObject.get("chance").getAsDouble();
 
-        Class<? extends Status> statusClass = StatusRegistry.getStatusClass(statusType);
+        Status status = context.deserialize(statusObj, Status.class);
 
-        try {
-            Status status = statusClass.getDeclaredConstructor().newInstance();
-            return new StatusEffect(status, chance);
-        } catch (Exception e) {
-            throw new JsonParseException("Failed to create StatusEffect instance", e);
-        }
+        return new StatusEffect(status, chance);
     }
 	
 }

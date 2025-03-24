@@ -5,7 +5,7 @@ import pokemon.Pokemon;
 
 public class MoveUI {
 	
-	private static final ConsoleHandler console = io.ConsoleHandler.getInstance();
+	private static final ConsoleHandler console = ConsoleHandler.getInstance();
 
     public void displayMoveUsed(String moveName, Pokemon source) {
         console.displayMessage("%n%s used %s!%n", source.getName(), moveName);

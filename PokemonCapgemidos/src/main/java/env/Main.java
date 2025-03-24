@@ -1,5 +1,8 @@
-package main;
+package env;
 
+import java.util.ServiceLoader;
+
+import annotation.scan.AnnotationScanner;
 import cache.MoveCache;
 import move.Move;
 import move.MoveRepository;
@@ -11,6 +14,8 @@ public class Main {
 	public static final MoveRepository moveRepository = MoveRepository.getInstance();
 
 	public static void main(String[] args) {
+		
+		ServiceLoader.load(AnnotationScanner.class).forEach(AnnotationScanner::scan);
 		
 		MoveCache moves = MoveCache.getInstance();
 		

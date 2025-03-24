@@ -2,9 +2,12 @@ package effect;
 
 import java.util.Random;
 
+import annotation.EffectType;
+import parse.deserialize.effect.StatusEffectDeserializer;
 import pokemon.Pokemon;
 import status.Status;
 
+@EffectType(name = "status", deserializer = StatusEffectDeserializer.class)
 public class StatusEffect implements Effect {
 
 	private static final Random random = new Random();

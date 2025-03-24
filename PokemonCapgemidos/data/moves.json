@@ -165,7 +165,7 @@
 		"pp": 25,
 		"type": "fire",
 		"category": "special",
-		"effects": [{"type": "status", "effect": {"status": "burn", "chance": 0.1}}]
+		"effects": [{"type": "status", "effect": {"status": {"type": "burn"}, "chance": 0.1}}]
 	}
 ]
 
