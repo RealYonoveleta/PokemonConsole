@@ -1,0 +1,282 @@
+[
+  {
+    "name": "Bulbasaur",
+    "hp": 45,
+    "attack": 49,
+    "defense": 49,
+    "specialAttack": 65,
+    "specialDefense": 65,
+    "speed": 45,
+    "types": ["grass", "poison"]
+  },
+  {
+    "name": "Ivysaur",
+    "hp": 60,
+    "attack": 62,
+    "defense": 63,
+    "specialAttack": 80,
+    "specialDefense": 80,
+    "speed": 60,
+    "types": ["grass", "poison"]
+  },
+  {
+    "name": "Venusaur",
+    "hp": 80,
+    "attack": 82,
+    "defense": 83,
+    "specialAttack": 100,
+    "specialDefense": 100,
+    "speed": 80,
+    "types": ["grass", "poison"]
+  },
+  {
+    "name": "Charmander",
+    "hp": 39,
+    "attack": 52,
+    "defense": 43,
+    "specialAttack": 60,
+    "specialDefense": 50,
+    "speed": 65,
+    "types": ["fire"]
+  },
+  {
+    "name": "Charmeleon",
+    "hp": 58,
+    "attack": 64,
+    "defense": 58,
+    "specialAttack": 80,
+    "specialDefense": 65,
+    "speed": 80,
+    "types": ["fire"]
+  },
+  {
+    "name": "Charizard",
+    "hp": 78,
+    "attack": 84,
+    "defense": 78,
+    "specialAttack": 109,
+    "specialDefense": 85,
+    "speed": 100,
+    "types": ["fire", "flying"]
+  },
+  {
+    "name": "Squirtle",
+    "hp": 44,
+    "attack": 48,
+    "defense": 65,
+    "specialAttack": 50,
+    "specialDefense": 64,
+    "speed": 43,
+    "types": ["water"]
+  },
+  {
+    "name": "Wartortle",
+    "hp": 59,
+    "attack": 63,
+    "defense": 80,
+    "specialAttack": 65,
+    "specialDefense": 80,
+    "speed": 58,
+    "types": ["water"]
+  },
+  {
+    "name": "Blastoise",
+    "hp": 79,
+    "attack": 83,
+    "defense": 100,
+    "specialAttack": 85,
+    "specialDefense": 105,
+    "speed": 78,
+    "types": ["water"]
+  },
+  {
+    "name": "Caterpie",
+    "hp": 45,
+    "attack": 30,
+    "defense": 35,
+    "specialAttack": 20,
+    "specialDefense": 20,
+    "speed": 45,
+    "types": ["bug"]
+  },
+  {
+    "name": "Metapod",
+    "hp": 50,
+    "attack": 20,
+    "defense": 55,
+    "specialAttack": 25,
+    "specialDefense": 25,
+    "speed": 30,
+    "types": ["bug"]
+  },
+  {
+    "name": "Butterfree",
+    "hp": 60,
+    "attack": 45,
+    "defense": 50,
+    "specialAttack": 90,
+    "specialDefense": 80,
+    "speed": 70,
+    "types": ["bug", "flying"]
+  },
+  {
+    "name": "Weedle",
+    "hp": 40,
+    "attack": 35,
+    "defense": 30,
+    "specialAttack": 20,
+    "specialDefense": 20,
+    "speed": 50,
+    "types": ["bug", "poison"]
+  },
+  {
+    "name": "Kakuna",
+    "hp": 45,
+    "attack": 25,
+    "defense": 50,
+    "specialAttack": 25,
+    "specialDefense": 25,
+    "speed": 35,
+    "types": ["bug", "poison"]
+  },
+  {
+    "name": "Beedrill",
+    "hp": 65,
+    "attack": 90,
+    "defense": 40,
+    "specialAttack": 45,
+    "specialDefense": 80,
+    "speed": 75,
+    "types": ["bug", "poison"]
+  },
+  {
+    "name": "Pidgey",
+    "hp": 40,
+    "attack": 45,
+    "defense": 40,
+    "specialAttack": 35,
+    "specialDefense": 35,
+    "speed": 56,
+    "types": ["normal", "flying"]
+  },
+  {
+    "name": "Pidgeotto",
+    "hp": 63,
+    "attack": 60,
+    "defense": 55,
+    "specialAttack": 50,
+    "specialDefense": 50,
+    "speed": 71,
+    "types": ["normal", "flying"]
+  },
+  {
+    "name": "Pidgeot",
+    "hp": 83,
+    "attack": 80,
+    "defense": 75,
+    "specialAttack": 70,
+    "specialDefense": 70,
+    "speed": 101,
+    "types": ["normal", "flying"]
+  },
+  {
+    "name": "Rattata",
+    "hp": 30,
+    "attack": 56,
+    "defense": 35,
+    "specialAttack": 25,
+    "specialDefense": 35,
+    "speed": 72,
+    "types": ["normal"]
+  },
+  {
+    "name": "Raticate",
+    "hp": 55,
+    "attack": 81,
+    "defense": 60,
+    "specialAttack": 50,
+    "specialDefense": 70,
+    "speed": 97,
+    "types": ["normal"]
+  },
+  {
+    "name": "Spearow",
+    "hp": 40,
+    "attack": 60,
+    "defense": 30,
+    "specialAttack": 31,
+    "specialDefense": 31,
+    "speed": 70,
+    "types": ["normal", "flying"]
+  },
+  {
+    "name": "Fearow",
+    "hp": 65,
+    "attack": 90,
+    "defense": 65,
+    "specialAttack": 61,
+    "specialDefense": 61,
+    "speed": 100,
+    "types": ["normal", "flying"]
+  },
+  {
+    "name": "Ekans",
+    "hp": 35,
+    "attack": 60,
+    "defense": 44,
+    "specialAttack": 40,
+    "specialDefense": 54,
+    "speed": 55,
+    "types": ["poison"]
+  },
+  {
+    "name": "Arbok",
+    "hp": 60,
+    "attack": 85,
+    "defense": 69,
+    "specialAttack": 65,
+    "specialDefense": 79,
+    "speed": 80,
+    "types": ["poison"]
+  },
+  {
+    "name": "Pikachu",
+    "hp": 35,
+    "attack": 55,
+    "defense": 40,
+    "specialAttack": 50,
+    "specialDefense": 50,
+    "speed": 90,
+    "types": ["electric"]
+  },
+  {
+    "name": "Raichu",
+    "hp": 60,
+    "attack": 90,
+    "defense": 55,
+    "specialAttack": 90,
+    "specialDefense": 80,
+    "speed": 110,
+    "types": ["electric"]
+  },
+  {
+    "name": "Sandshrew",
+    "hp": 50,
+    "attack": 75,
+    "defense": 85,
+    "specialAttack": 20,
+    "specialDefense": 30,
+    "speed": 40,
+    "types": ["ground"]
+  },
+  {
+    "name": "Sandslash",
+    "hp": 75,
+    "attack": 100,
+    "defense": 110,
+    "specialAttack": 45,
+    "specialDefense": 55,
+    "speed": 65,
+    "types": ["ground"]
+  }
+]
