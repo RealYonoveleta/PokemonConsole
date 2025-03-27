@@ -1,5 +1,8 @@
 # 🌟 Pokemon Console Game Framework
 
+![GitHub release](https://img.shields.io/github/v/release/RealYonoveleta/PokemonConsole)
+![GitHub License](https://img.shields.io/github/license/RealYonoveleta/PokemonConsole)
+
 A powerful and flexible framework for creating console-based Pokémon games in Java. Designed for modularity, reusability, and ease of collaboration!
 
 ## 🔄 Importing the Framework in Maven
@@ -8,7 +11,7 @@ To use this framework in your Maven project, follow the steps below:
 
 ### ✨ **Step 1: Add the Repository**
 
-#### Add this to your `pom.xml`:
+#### Add the Repository to your `pom.xml`:
 
 ```xml
 <repositories>
