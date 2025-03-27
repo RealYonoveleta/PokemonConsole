@@ -90,8 +90,9 @@ public class TurnManager {
 	}
 
 	private void checkForFaintedPokemon(Trainer trainer, Pokemon pokemon) {
-		if (pokemon.getState() == PokemonState.FAINTED) {
+		if (pokemon.getHp()<= 0 && !pokemon.isFainted()) {
 			// Trigger fainted Pokémon logic
+			pokemon.setState(PokemonState.FAINTED);
 			pokemonUI.showFaintedMessage(pokemon);
 			trainer.setActivePokemon();
 		}

@@ -24,9 +24,8 @@ public class StatusDeserializer implements JsonDeserializer<Status> {
 			return createStatus(statusClass);
 		} catch (StatusCreationException e) {
 			e.printStackTrace();
+			return null;
 		}
-        
-		return null;
 	}
 	
 	private Status createStatus(Class<? extends Status> statusClass) throws StatusCreationException {

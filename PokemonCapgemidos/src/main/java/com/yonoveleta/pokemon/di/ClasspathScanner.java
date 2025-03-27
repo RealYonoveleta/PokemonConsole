@@ -10,6 +10,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.yonoveleta.pokemon.io.log.CentralLogger;
+
 public class ClasspathScanner {
 
 	private AnnotationRegistry registry = AnnotationRegistry.getInstance();
@@ -99,7 +101,7 @@ public class ClasspathScanner {
 					Class<?> clazz = Class.forName(className);
 					if (clazz.isAnnotationPresent(annotation)) {
 						annotatedClasses.add(clazz);
-						System.out.println("Found annotated class: " + clazz.getName());
+						CentralLogger.logInfo("Found annotated class: " + clazz.getName());
 						registry.register(clazz, annotation);
 					}
 				}
@@ -119,7 +121,7 @@ public class ClasspathScanner {
 				// Step 3: If the field is annotated with the desired annotation, process it
 				if (field.isAnnotationPresent(annotation)) {
 					// Process the annotated field (e.g., register it for dependency injection)
-					System.out.println("Found annotated field: " + field.getName() + " in class " + clazz.getName());
+					CentralLogger.logInfo("Found annotated field: " + field.getName() + " in class " + clazz.getName());
 					registry.register(field, annotation);
 				}
 			}

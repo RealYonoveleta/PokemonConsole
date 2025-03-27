@@ -47,6 +47,7 @@ public class MoveImpl implements Move {
 	    this.pps = other.getPPs();
 	    this.type = other.getType();
 	    this.moveType = other.getMoveType();
+	    this.effects = other.getEffects();
 	}
 
 	public void reducePPs() {

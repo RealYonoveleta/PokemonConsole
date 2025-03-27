@@ -6,13 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ServiceLoader;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import com.yonoveleta.pokemon.annotation.scan.AnnotationScanner;
+import com.yonoveleta.pokemon.data.DataInitializer;
+import com.yonoveleta.pokemon.data.DataPathProvider;
+import com.yonoveleta.pokemon.data.annotation.DataPath;
 import com.yonoveleta.pokemon.di.AnnotationRegistry;
 import com.yonoveleta.pokemon.di.ClasspathScanner;
 import com.yonoveleta.pokemon.di.DependencyInjector;
 import com.yonoveleta.pokemon.di.annotation.Logic;
 import com.yonoveleta.pokemon.di.annotation.PokemonApplication;
+import com.yonoveleta.pokemon.di.comparator.LogicComparator;
+import com.yonoveleta.pokemon.io.log.CentralLogger;
 
 public class EngineStarter {
 
@@ -32,6 +38,13 @@ public class EngineStarter {
 		scanAndRegisterClassAnnotations(scanner);
 		scanAndRegisterFieldAnnotations(scanner);
 
+		// Loading data
+		DataPath dataPath = app.getAnnotation(DataPath.class);
+		if (dataPath != null)
+			DataPathProvider.USER_DATA_FOLDER = dataPath.value();
+		CentralLogger.logInfo("Set default user-data path to %s", DataPathProvider.USER_DATA_FOLDER);
+		DataInitializer.ensureUserDataExists();
+
 		// Depencendy injection
 		AnnotationRegistry registry = scanner.getRegistry();
 		DependencyInjector.initializeInstances(registry);
@@ -41,7 +54,8 @@ public class EngineStarter {
 		List<GameLogic> logics = getLogicInstances(registry);
 
 		// Any other initialization logic can go here
-		System.out.println("Engine initialized successfully.");
+		CentralLogger.logInfo("Engine initialized successfully!");
+		System.out.println("-".repeat(100));
 
 		for (GameLogic logic : logics) {
 			logic.run();
@@ -59,6 +73,7 @@ public class EngineStarter {
 		if (!pokemonAppClasses.isEmpty()) {
 			// Get the first class that has the @PokemonApplication annotation
 			Class<?> pokemonAppClass = pokemonAppClasses.iterator().next();
+			CentralLogger.logInfo("Detected PokemonApplication at %s", pokemonAppClass);
 			// Return the package name of the class
 			return pokemonAppClass;
 		} else {
@@ -96,7 +111,10 @@ public class EngineStarter {
 
 		for (Class<?> clazz : logicClasses) {
 			instances.add(DependencyInjector.getInstanceOfClass(clazz));
+			CentralLogger.logInfo("Loaded logic class: %s", clazz);
 		}
+
+		instances = instances.stream().sorted(new LogicComparator()).collect(Collectors.toList());
 
 		for (Object obj : instances) {
 			if (GameLogic.class.isAssignableFrom(obj.getClass())) {

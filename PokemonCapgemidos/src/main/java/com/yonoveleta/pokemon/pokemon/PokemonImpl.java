@@ -70,7 +70,6 @@ public class PokemonImpl implements Pokemon {
 	@Override
 	public void takeDamage(int damage) {
 		this.hp = Math.max(0, this.hp - damage);
-	    if (this.hp == 0) setState(PokemonState.FAINTED);
 	}
 
 	@Override
@@ -88,6 +87,10 @@ public class PokemonImpl implements Pokemon {
 	}
 
 	public void learnMove(Move newMove) {
+		if(newMove == null) {
+			return;
+		}
+		
 	    if (movesKnown() == 4) {
 	        handleMoveReplacement(newMove); // Separate move replacement logic
 	    } else {
@@ -264,6 +267,11 @@ public class PokemonImpl implements Pokemon {
 	@Override
 	public List<Status> getStatuses() {
 		return statuses;
+	}
+
+	@Override
+	public boolean isFainted() {
+		return state == PokemonState.FAINTED;
 	}
 
 }

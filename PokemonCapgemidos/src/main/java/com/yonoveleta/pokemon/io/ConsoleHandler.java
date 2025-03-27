@@ -48,6 +48,7 @@ public class ConsoleHandler {
 	
 	public int askForChoiceArray(String prompt, String[] options) {
 		displayList(prompt, options);
+		displayMessage("%n%s: ", "Choose");
 		
 		while(true) {
 			try {

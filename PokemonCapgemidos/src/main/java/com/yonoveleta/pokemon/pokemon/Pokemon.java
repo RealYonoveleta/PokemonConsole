@@ -72,5 +72,7 @@ public interface Pokemon {
 	void setCanMove(boolean canMove);
 
 	public List<Status> getStatuses();
+
+	public boolean isFainted();
 	
 }

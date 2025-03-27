@@ -1,4 +1,4 @@
-package com.yonoveleta.pokemon.di.annotation;
+package com.yonoveleta.pokemon.data.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Logic {
-	int order();
+public @interface DataPath {
+	String value();
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.yonoveleta.pokemon.di.annotation.Factory;
+import com.yonoveleta.pokemon.di.annotation.GameContext;
 import com.yonoveleta.pokemon.di.annotation.Inject;
 import com.yonoveleta.pokemon.di.annotation.Logic;
 import com.yonoveleta.pokemon.di.annotation.PokemonApplication;
@@ -22,6 +23,7 @@ public class AnnotationRegistry {
 		addClassAnnotationToScan(PokemonApplication.class);
 		addClassAnnotationToScan(Logic.class);
 		addClassAnnotationToScan(Factory.class);
+		addClassAnnotationToScan(GameContext.class);
 
 		addFieldAnnotationToScan(Inject.class);
 	}

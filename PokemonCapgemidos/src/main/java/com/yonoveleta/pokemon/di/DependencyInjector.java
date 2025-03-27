@@ -6,6 +6,8 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.yonoveleta.pokemon.io.log.CentralLogger;
+
 public class DependencyInjector {
 
 	private static final Map<Class<?>, Object> instanceMap = new HashMap<>();
@@ -14,16 +16,19 @@ public class DependencyInjector {
 	public static void initializeInstances(AnnotationRegistry registry) {
 		for (Class<?> clazz : registry.getAllAnnotatedClasses()) {
 			instanceMap.put(clazz, getOrCreateInstance(clazz));
+			CentralLogger.logInfo("%s initialized", clazz);
 		}
 	}
 
 	// Step 2: Inject dependencies into fields
 	public static void injectDependencies(AnnotationRegistry registry) {
-		for(Field field : registry.getAllAnnotatedFields()) {
+		for (Field field : registry.getAllAnnotatedFields()) {
 			field.setAccessible(true);
 			try {
 				Class<?> declaringClass = field.getDeclaringClass();
 				field.set(instanceMap.get(declaringClass), instanceMap.get(field.getType()));
+				CentralLogger.logInfo("%s injected into %s", field.getType().getSimpleName(),
+						declaringClass.getSimpleName());
 			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -54,13 +59,13 @@ public class DependencyInjector {
 			throw new RuntimeException("Failed to create instance for " + clazz.getName(), e);
 		}
 	}
-	
+
 	public static Map<Class<?>, Object> getInstaceMap() {
 		return instanceMap;
 	}
-	
+
 	public static Object getInstanceOfClass(Class<?> clazz) {
 		return instanceMap.get(clazz);
 	}
-	
+
 }
