@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yonoveleta.pokemon</groupId>
 	<artifactId>pokemon-console</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.1-alpha</version>
 	<name>Pokemon Console Game Framework</name>
 
 	<properties>

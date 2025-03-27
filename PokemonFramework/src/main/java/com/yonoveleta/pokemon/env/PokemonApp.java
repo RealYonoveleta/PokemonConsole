@@ -20,7 +20,7 @@ import com.yonoveleta.pokemon.di.annotation.PokemonApplication;
 import com.yonoveleta.pokemon.di.comparator.LogicComparator;
 import com.yonoveleta.pokemon.io.log.CentralLogger;
 
-public class EngineStarter {
+public class PokemonApp {
 
 	private static String basePackage;
 	private static final String FRAMEWORK_BASE_PACKAGE = "com.yonoveleta.pokemon";
