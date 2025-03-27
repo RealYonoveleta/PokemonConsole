@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yonoveleta.pokemon</groupId>
 	<artifactId>pokemon-console</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Pokemon Console Game Framework</name>
 
 	<properties>
@@ -68,6 +68,19 @@
 				<configuration>
 					<release>23</release>
 				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jreleaser</groupId>
+				<artifactId>jreleaser-maven-plugin</artifactId>
+				<version>1.9.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>full-release</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

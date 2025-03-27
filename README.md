@@ -33,7 +33,7 @@ Add the following dependency to your `pom.xml`:
     <dependency>
         <groupId>com.yonoveleta.pokemon</groupId>
         <artifactId>pokemon-console</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </dependency>
 </dependencies>
 ```
