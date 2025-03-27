@@ -69,19 +69,6 @@
 					<release>23</release>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.jreleaser</groupId>
-				<artifactId>jreleaser-maven-plugin</artifactId>
-				<version>1.9.0</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>full-release</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 </project>
