@@ -11,6 +11,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<distributionManagement>
+		<repository>
+			<id>PokemonFramework</id>
+			<url>https://maven.pkg.github.com/RealYonoveleta/PokemonConsole</url>
+		</repository>
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
