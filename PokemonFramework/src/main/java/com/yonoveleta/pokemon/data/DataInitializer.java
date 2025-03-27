@@ -7,19 +7,29 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 import com.yonoveleta.pokemon.io.log.CentralLogger;
+import com.yonoveleta.pokemon.text.TextManager;
 
 public class DataInitializer {
 
 	public static void ensureUserDataExists() {
 		File userDataDir = new File(DataPathProvider.USER_DATA_FOLDER);
+		File userTextDir = new File(DataPathProvider.USER_DATA_FOLDER, DataPathProvider.USER_TEXT_FOLDER);
 
 		// Ensure the user-data directory exists
 		if (!userDataDir.exists()) {
 			userDataDir.mkdirs();
 		}
+		
+		// Ensure the user-data/text directory exists
+		if (!userTextDir.exists()) {
+			userTextDir.mkdir();
+		}
 
 		copyFileIfNotExists(DataPathProvider.POKEMON_DATA);
 		copyFileIfNotExists(DataPathProvider.MOVE_DATA);
+		
+		File textsDirectory = new File(DataPathProvider.USER_DATA_FOLDER, DataPathProvider.USER_TEXT_FOLDER);
+		TextManager.getInstance().loadTexts(textsDirectory);
 	}
 
 	private static void copyFileIfNotExists(String resourcePath) {
