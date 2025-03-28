@@ -1,5 +1,7 @@
 package com.yonoveleta.pokemon.annotation.scan;
 
+import org.reflections.scanners.Scanners;
+
 import com.google.gson.JsonDeserializer;
 import com.yonoveleta.pokemon.annotation.StatusType;
 import com.yonoveleta.pokemon.registry.StatusRegistry;
@@ -8,7 +10,7 @@ import com.yonoveleta.pokemon.status.Status;
 public class StatusTypeScanner extends AbstractAnnotationScanner<StatusType> {
 
 	public StatusTypeScanner() {
-		super(StatusType.class);
+		super(StatusType.class, Scanners.TypesAnnotated);
 	}
 
 	@Override

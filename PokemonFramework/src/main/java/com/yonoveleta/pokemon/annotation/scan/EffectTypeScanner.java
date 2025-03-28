@@ -1,5 +1,7 @@
 package com.yonoveleta.pokemon.annotation.scan;
 
+import org.reflections.scanners.Scanners;
+
 import com.google.gson.JsonDeserializer;
 import com.yonoveleta.pokemon.annotation.EffectType;
 import com.yonoveleta.pokemon.effect.Effect;
@@ -8,7 +10,7 @@ import com.yonoveleta.pokemon.registry.EffectRegistry;
 public class EffectTypeScanner extends AbstractAnnotationScanner<EffectType>{
 
 	public EffectTypeScanner() {
-		super(EffectType.class);
+		super(EffectType.class, Scanners.TypesAnnotated);
 	}
 
 	@Override

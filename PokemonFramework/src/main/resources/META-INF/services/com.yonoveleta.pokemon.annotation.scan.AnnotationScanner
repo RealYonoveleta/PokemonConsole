@@ -1,2 +1,8 @@
 com.yonoveleta.pokemon.annotation.scan.StatusTypeScanner
 com.yonoveleta.pokemon.annotation.scan.EffectTypeScanner
+com.yonoveleta.pokemon.di.scan.PokemonApplicationScanner
+com.yonoveleta.pokemon.di.scan.LogicScanner
+com.yonoveleta.pokemon.di.scan.FactoryScanner
+com.yonoveleta.pokemon.di.scan.GameContextScanner
+com.yonoveleta.pokemon.di.scan.LoaderScanner
+com.yonoveleta.pokemon.di.scan.InjectScanner

@@ -7,12 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.yonoveleta.pokemon.di.annotation.Factory;
-import com.yonoveleta.pokemon.di.annotation.GameContext;
-import com.yonoveleta.pokemon.di.annotation.Inject;
-import com.yonoveleta.pokemon.di.annotation.Loader;
-import com.yonoveleta.pokemon.di.annotation.Logic;
 import com.yonoveleta.pokemon.di.annotation.PokemonApplication;
+import com.yonoveleta.pokemon.io.log.CentralLogger;
 
 public class AnnotationRegistry {
 
@@ -21,13 +17,6 @@ public class AnnotationRegistry {
 
 	// Private constructor to prevent instantiation
 	private AnnotationRegistry() {
-		addClassAnnotationToScan(PokemonApplication.class);
-		addClassAnnotationToScan(Logic.class);
-		addClassAnnotationToScan(Factory.class);
-		addClassAnnotationToScan(GameContext.class);
-		addClassAnnotationToScan(Loader.class);
-
-		addFieldAnnotationToScan(Inject.class);
 	}
 
 	public static AnnotationRegistry getInstance() {
@@ -37,35 +26,32 @@ public class AnnotationRegistry {
 		return instance;
 	}
 
-	// List of annotations to scan for
-	private final List<Class<? extends Annotation>> classAnnotationsToScan = new ArrayList<>();
-
-	// List of field annotations to scan for
-	private final List<Class<? extends Annotation>> fieldAnnotationsToScan = new ArrayList<>();
 
 	// Map to store annotations and their associated classes
-	private Map<Class<? extends Annotation>, List<Class<?>>> annotationClassMap = new HashMap<>();
+	private static Map<Class<? extends Annotation>, List<Class<?>>> annotationClassMap = new HashMap<>();
 
 	// Map to store annotations and their associated fields
-	private Map<Class<? extends Annotation>, List<Field>> annotationFieldMap = new HashMap<>();
+	private static Map<Class<? extends Annotation>, List<Field>> annotationFieldMap = new HashMap<>();
 
 	// Registers a class for a given annotation
-	public void register(Class<?> clazz, Class<? extends Annotation> annotation) {
+	public static void register(Class<?> clazz, Class<? extends Annotation> annotation) {
 		List<Class<?>> registeredClasses = annotationClassMap.computeIfAbsent(annotation, _ -> new ArrayList<>());
 
 		// Check if the class is already registered
 		if (!registeredClasses.contains(clazz)) {
 			registeredClasses.add(clazz);
+			CentralLogger.logInfo("Class %s registered for annotation %s", clazz, annotation.getSimpleName());
 		}
 	}
 
 	// Registers a field for a given annotation
-	public void register(Field field, Class<? extends Annotation> annotation) {
+	public static void register(Field field, Class<? extends Annotation> annotation) {
 		List<Field> registeredFields = annotationFieldMap.computeIfAbsent(annotation, _ -> new ArrayList<>());
 
 		// Check if the field is already registered
 		if (!registeredFields.contains(field)) {
 			registeredFields.add(field);
+			CentralLogger.logInfo("Field %s registered for annotation %s", field, annotation.getSimpleName());
 		}
 	}
 
@@ -103,27 +89,14 @@ public class AnnotationRegistry {
 		if (classes.isEmpty()) {
 			throw new RuntimeException("No class annotated with @PokemonApplication found.");
 		}
-		return classes.get(0); // Assume there's only one, or handle multiple cases
-	}
 
-	// Method to get the list of class annotations being scanned for
-	public List<Class<? extends Annotation>> getClassAnnotationsToScan() {
-		return classAnnotationsToScan;
-	}
+		if (classes.size() > 1) {
+			CentralLogger.logError("More than one @PokemonApplication found", null);
+		}
 
-	// Method to get the list of class annotations being scanned for
-	public List<Class<? extends Annotation>> getFieldAnnotationsToScan() {
-		return fieldAnnotationsToScan;
-	}
-
-	// Method to add more class annotations to be scanned
-	public void addClassAnnotationToScan(Class<? extends Annotation> annotation) {
-		classAnnotationsToScan.add(annotation);
-	}
-
-	// Method to add more field annotations to be scanned
-	public void addFieldAnnotationToScan(Class<? extends Annotation> annotation) {
-		fieldAnnotationsToScan.add(annotation);
+		Class<?> pokemonAppClass = classes.get(0);
+		CentralLogger.logInfo("Detected PokemonApplication at %s", pokemonAppClass);
+		return pokemonAppClass;
 	}
 
 }
