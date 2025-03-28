@@ -50,11 +50,11 @@ jobs:
 
     # Upload Jacoco HTML report as artifact
     - name: Upload Jacoco report as an artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: jacoco-report
         path: target/site/jacoco/index.html
-        
+
     # Upload Jacoco coverage data to Coveralls
     - name: Upload Jacoco coverage data to Coveralls
       uses: coverallsapp/github-action@v1.0.2
