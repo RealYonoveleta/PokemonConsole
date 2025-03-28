@@ -19,8 +19,9 @@ jobs:
       uses: actions/setup-java@v2
       with:
         java-version: '21'
-        distribution: 'adoptopenjdk'
+        distribution: 'adoptium'
 
+   # Cache Maven dependencies
     - name: Cache Maven dependencies
       uses: actions/cache@v2
       with:
