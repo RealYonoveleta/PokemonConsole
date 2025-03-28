@@ -96,6 +96,11 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.1.2</version>
+				<configuration>
+					<argLine>
+						-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/0.8.10/org.jacoco.agent-0.8.10-runtime.jar=destfile=${project.basedir}/target/jacoco.exec
+					</argLine>
+				</configuration>
 			</plugin>
 
 			<plugin>
@@ -109,11 +114,6 @@
 							<goal>prepare-agent</goal>
 						</goals>
 						<phase>test</phase>
-						<configuration>
-							<argLine>
-								-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/0.8.10/org.jacoco.agent-0.8.10-runtime.jar=destfile=${jacoco.destfile}
-							</argLine>
-						</configuration>
 					</execution>
 					<execution>
 						<id>report</id>
