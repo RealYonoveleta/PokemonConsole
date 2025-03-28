@@ -25,7 +25,7 @@ jobs:
         java-version: '23'
         distribution: 'temurin'
 
-   # Cache Maven dependencies
+    # Cache Maven dependencies
     - name: Cache Maven dependencies
       uses: actions/cache@v4
       with:
@@ -47,3 +47,18 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         file: './target/site/jacoco/jacoco.xml'  # Path to your JaCoCo report
+
+    # Upload Jacoco HTML report as artifact
+    - name: Upload Jacoco report as an artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: jacoco-report
+        path: target/site/jacoco/index.html
+        
+    # Upload Jacoco coverage data to Coveralls
+    - name: Upload Jacoco coverage data to Coveralls
+      uses: coverallsapp/github-action@v1.0.2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
