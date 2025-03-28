@@ -53,7 +53,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: jacoco-report
-        path: target/site/jacoco/index.html
+        path: ${{ github.workspace }}/PokemonFramework/target/site/jacoco/index.html
 
     # Upload Jacoco coverage data to Coveralls
     - name: Upload Jacoco coverage data to Coveralls
