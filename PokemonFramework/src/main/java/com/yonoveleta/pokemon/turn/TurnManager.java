@@ -94,7 +94,10 @@ public class TurnManager {
 			// Trigger fainted Pokémon logic
 			pokemon.setState(PokemonState.FAINTED);
 			pokemonUI.showFaintedMessage(pokemon);
-			trainer.setActivePokemon();
+			
+			if(trainer.getHealthyPokemonCount() > 0) {
+				trainer.setActivePokemon();
+			}
 		}
 	}
 

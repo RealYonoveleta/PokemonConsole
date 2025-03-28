@@ -12,14 +12,14 @@ To use this framework in your Maven project, follow the steps below:
 
 ### ✨ **Step 1: Add the Repository**
 
-#### Add the Repository to your `pom.xml`:
+#### Add Jitpack Repository to your `pom.xml`:
 
 ```xml
 <repositories>
-    <repository>
-        <id>PokemonFramework</id>
-        <url>https://maven.pkg.github.com/RealYonoveleta/PokemonConsole</url>
-    </repository>
+	<repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+	</repository>
 </repositories>
 ```
 
@@ -32,12 +32,13 @@ Add the following dependency to your `pom.xml`:
 ```xml
 <dependencies>
     <dependency>
-        <groupId>com.yonoveleta.pokemon</groupId>
-        <artifactId>pokemon-console</artifactId>
-        <version>0.0.1-alpha</version>
-    </dependency>
+	    <groupId>com.github.RealYonoveleta</groupId>
+	    <artifactId>PokemonConsole</artifactId>
+	    <version>Tag</version>
+	</dependency>
 </dependencies>
 ```
+Go check [Jitpack](https://jitpack.io/#RealYonoveleta/PokemonConsole/) for the tags! 🚀
 
 ---
 

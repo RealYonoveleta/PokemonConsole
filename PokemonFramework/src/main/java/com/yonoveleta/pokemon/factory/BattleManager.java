@@ -15,8 +15,8 @@ public class BattleManager {
 		return INSTANCE;
 	}
 	
-	public void startBattle(Trainer player, Trainer rival) {
-		new Battle(player, rival).start();
+	public Trainer startBattle(Trainer player, Trainer rival) {
+		return new Battle(player, rival).start();
 	}
 
 }
