@@ -86,16 +86,19 @@
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
+						<phase>test</phase>
 					</execution>
 					<execution>
-						<id>report</id>
-						<phase>verify</phase>
+						<id>generate-report</id>
 						<goals>
 							<goal>report</goal>
 						</goals>
+						<phase>post-integration-test</phase> <!-- You can use
+						post-integration-test or site -->
 						<configuration>
 							<outputDirectory>target/site/jacoco</outputDirectory>
-							<dataFile>target/jacoco.exec</dataFile>
+							<dataFile>target/jacoco.exec</dataFile> <!-- File
+							that holds coverage data -->
 						</configuration>
 					</execution>
 				</executions>
