@@ -11,6 +11,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}/PokemonFramework  # Set default working directory here
 
     steps:
     - name: Check out code
@@ -32,15 +35,12 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Build with Maven
-      working-directory: ${{ github.workspace }}/PokemonFramework
       run: mvn clean install
 
     - name: Run tests with Maven Surefire
-      working-directory: ${{ github.workspace }}/PokemonFramework
       run: mvn test
 
     - name: Run JaCoCo coverage report
-      working-directory: ${{ github.workspace }}/PokemonFramework
       run: mvn jacoco:report
 
     - name: Upload JaCoCo Coverage Report to GitHub
