@@ -57,7 +57,7 @@ jobs:
 
     # Upload Jacoco coverage data to Coveralls
     - name: Upload Jacoco coverage data to Coveralls
-      uses: coverallsapp/github-action@v1.0.2
+      uses: coverallsapp/github-action@v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
       env:
