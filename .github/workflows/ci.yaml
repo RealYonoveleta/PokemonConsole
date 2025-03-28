@@ -30,11 +30,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    - name: Sepecify POM file
+    - name: Sepecify POM file and install
       run: mvn -f $GITHUB_WORKSPACE/PokemonFramework/pom.xml clean install  # Specify the POM file directly
-
-    - name: Build with Maven
-      run: mvn clean install
 
     - name: Run tests with Maven Surefire
       run: mvn test
