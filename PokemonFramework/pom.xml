@@ -9,7 +9,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jacoco.destfile>${project.basedir}/target/jacoco.exec</jacoco.destfile>
 	</properties>
 
 	<distributionManagement>
@@ -98,7 +97,7 @@
 				<version>3.1.2</version>
 				<configuration>
 					<argLine>
-						-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/0.8.10/org.jacoco.agent-0.8.10-runtime.jar=destfile=${project.basedir}/target/jacoco.exec
+						-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/0.8.10/org.jacoco.agent-0.8.10-runtime.jar=destfile=${project.build.directory}/target/jacoco.exec
 					</argLine>
 				</configuration>
 			</plugin>
