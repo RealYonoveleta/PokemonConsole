@@ -31,7 +31,7 @@ jobs:
           ${{ runner.os }}-maven-
 
     - name: Change directory to PokemonFramework
-      run: cd PokemonFramework  # Change to the correct directory where your pom.xml is located
+      working-directory: ~/work/PokemonConsole/PokemonFramework  # Change to the correct directory where your pom.xml is located
 
     - name: Build with Maven
       run: mvn clean install
