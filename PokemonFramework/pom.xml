@@ -79,20 +79,22 @@
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.10</version>
+				<version>0.8.10</version> <!-- Or the version you're using -->
 				<executions>
 					<execution>
-						<id>prepare-agent</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
 					<execution>
-						<id>report</id>
-						<phase>verify</phase>
 						<goals>
 							<goal>report</goal>
 						</goals>
+						<configuration>
+							<outputDirectory>target/site/jacoco</outputDirectory>
+							<dataFile>target/jacoco.exec</dataFile>
+							<xmlFile>target/site/jacoco/jacoco.xml</xmlFile> 
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
