@@ -30,8 +30,10 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
+    - name: Change directory to POM location
+      run: cd $GITHUB_WORKSPACE/PokemonFramework
+
     - name: Build with Maven
-      working-directory: ~/work/PokemonConsole/PokemonFramework  # Change to the correct directory where your pom.xml is located
       run: mvn clean install
 
     - name: Run tests with Maven Surefire
