@@ -34,7 +34,7 @@ public class BattleUI {
 	}
 
 	public void announceWinner(Trainer winner) {
-		console.displayMessage("\n%s won!\n", winner.getName());
+		console.displayMessage("%n%s won!%n%n", winner.getName());
 	}
 
 }

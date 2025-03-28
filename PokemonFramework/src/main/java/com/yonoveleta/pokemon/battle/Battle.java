@@ -18,7 +18,7 @@ public class Battle {
 		this.rival = rival;
 	}
 
-	public void start() {
+	public Trainer start() {
 		battleUI.displayBattleStart();
 
 		Pokemon currentPlayerPokemon;
@@ -42,7 +42,9 @@ public class Battle {
 			turnManager.processTurn();
 		}
 
-		battleUI.announceWinner(player.getHealthyPokemonCount() > 0 ? player : rival);
+		Trainer winner = player.getHealthyPokemonCount() > 0 ? player : rival;
+		battleUI.announceWinner(winner);
+		return winner;
 	}
 
 }
