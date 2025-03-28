@@ -40,6 +40,7 @@ jobs:
       run: mvn test
 
     - name: Run JaCoCo coverage report
+      working-directory: ${{ github.workspace }}/PokemonFramework
       run: mvn jacoco:report
 
     - name: Upload JaCoCo Coverage Report to GitHub
