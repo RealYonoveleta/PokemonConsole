@@ -12,5 +12,5 @@ import com.yonoveleta.pokemon.effect.Effect;
 @Target(ElementType.TYPE) 
 public @interface EffectType {
     String name();
-    Class<? extends JsonDeserializer<? extends Effect>> deserializer();
+    Class<? extends JsonDeserializer<Effect>> deserializer();
 }
