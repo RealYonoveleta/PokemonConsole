@@ -66,3 +66,5 @@ jobs:
     # Deploy to github pages
     - name: Deploy to Maven Repository
       run: mvn deploy -DskipExisting=true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
