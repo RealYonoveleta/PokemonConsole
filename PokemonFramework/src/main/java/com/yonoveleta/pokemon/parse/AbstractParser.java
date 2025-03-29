@@ -47,12 +47,7 @@ public abstract class AbstractParser<T> implements Parser<T> {
 				}
 			}
 
-			try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
-			    return GsonRegistry.getInstance().getGson().fromJson(inputStreamReader, getListType());
-			} catch (IOException e) {
-				CentralLogger.logError("Error parsing", e);
-			    return new ArrayList<>(); 
-			}
+			return deserializeJson(inputStream);
 
 		} catch (IOException e) {
 			System.err.println("I/O Error while reading file: " + getFilePath());
@@ -71,6 +66,16 @@ public abstract class AbstractParser<T> implements Parser<T> {
 		}
 
 		return Collections.emptyList(); // Return empty list on failure
+	}
+	
+	// Method that handles the deserialization
+	private List<T> deserializeJson(InputStream inputStream) {
+	    try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
+	        return GsonRegistry.getInstance().getGson().fromJson(inputStreamReader, getListType());
+	    } catch (IOException e) {
+	        CentralLogger.logError("Error parsing", e);
+	        return new ArrayList<>();
+	    }
 	}
 
 }
