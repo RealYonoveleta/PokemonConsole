@@ -79,6 +79,22 @@
 			<version>1.12.1</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Mockito Dependency -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>5.16.1</version> <!-- Or use the latest version -->
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Mockito JUnit 5 integration (optional but useful for JUnit 5) -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>5.16.1</version> <!-- Or use the latest version -->
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

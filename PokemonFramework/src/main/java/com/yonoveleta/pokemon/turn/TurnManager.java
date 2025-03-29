@@ -101,4 +101,8 @@ public class TurnManager {
 		}
 	}
 
+	public Queue<TurnAction> getActionQueue() {
+		return new PriorityQueue<TurnAction>(actionQueue);
+	}
+
 }
