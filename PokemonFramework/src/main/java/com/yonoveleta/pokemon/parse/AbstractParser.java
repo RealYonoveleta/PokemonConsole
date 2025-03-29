@@ -7,12 +7,14 @@ import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 import com.yonoveleta.pokemon.data.DataPathProvider;
+import com.yonoveleta.pokemon.io.log.CentralLogger;
 
 public abstract class AbstractParser<T> implements Parser<T> {
 
@@ -45,8 +47,12 @@ public abstract class AbstractParser<T> implements Parser<T> {
 				}
 			}
 
-			// Use TypeToken to specify the generic type for deserialization
-			return GsonRegistry.getInstance().getGson().fromJson(new InputStreamReader(inputStream), getListType());
+			try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream)) {
+			    return GsonRegistry.getInstance().getGson().fromJson(inputStreamReader, getListType());
+			} catch (IOException e) {
+				CentralLogger.logError("Error parsing", e);
+			    return new ArrayList<>(); 
+			}
 
 		} catch (IOException e) {
 			System.err.println("I/O Error while reading file: " + getFilePath());
