@@ -27,6 +27,7 @@ jobs:
       with:
         java-version: '23'
         distribution: 'temurin'
+        server-id: PokemonFramework
 
     # Cache Maven dependencies
     - name: Cache Maven dependencies
