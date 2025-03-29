@@ -25,11 +25,6 @@ jobs:
         java-version: '23'
         distribution: 'temurin'
 
-    - name: Set up Maven 3.6.3
-      uses: actions/setup-java@v4
-      with:
-        maven-version: 3.6.3
-
     # Cache Maven dependencies
     - name: Cache Maven dependencies
       uses: actions/cache@v4
@@ -71,6 +66,3 @@ jobs:
     # Deploy to github pages
     - name: Deploy to Maven Repository
       run: mvn deploy -DskipExisting=true
-      env:
-        GITHUB_USERNAME: RealYonoveleta
-        PACKAGES_PAT: ${{ secrets.PACKAGES_PAT }}
