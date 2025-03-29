@@ -3,6 +3,7 @@
 ![GitHub release](https://img.shields.io/github/v/release/RealYonoveleta/PokemonConsole)
 ![GitHub License](https://img.shields.io/github/license/RealYonoveleta/PokemonConsole)
 [![Coverage Status](https://coveralls.io/repos/github/RealYonoveleta/PokemonConsole/badge.svg?branch=main)](https://coveralls.io/github/RealYonoveleta/PokemonConsole?branch=main)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RealYonoveleta_PokemonConsole&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=RealYonoveleta_PokemonConsole)
 
 A powerful and flexible framework for creating console-based Pokémon games in Java. Designed for modularity, reusability, and ease of collaboration!
 
