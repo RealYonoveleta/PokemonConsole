@@ -24,8 +24,6 @@ jobs:
       with:
         java-version: '23'
         distribution: 'temurin'
-        server-username: GITHUB_TOKEN  # Tells Maven to use the token
-        server-password: ${{ secrets.GITHUB_TOKEN }}
 
     # Cache Maven dependencies
     - name: Cache Maven dependencies
@@ -68,3 +66,5 @@ jobs:
     # Deploy to github pages
     - name: Deploy to Maven Repository
       run: mvn deploy -DskipExisting=true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
