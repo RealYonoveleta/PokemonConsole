@@ -29,6 +29,14 @@ jobs:
         distribution: 'temurin'
         server-id: PokemonFramework
 
+    # Cache SonarQube
+    - name: Cache SonarQube packages
+      uses: actions/cache@v4
+      with:
+        path: ~/.sonar/cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
+
     # Cache Maven dependencies
     - name: Cache Maven dependencies
       uses: actions/cache@v4
@@ -66,6 +74,12 @@ jobs:
         github-token: ${{ secrets.GITHUB_TOKEN }}
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
+
+    # SonarQube Analysis
+    - name: SonarQube Analysis
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RealYonoveleta_PokemonConsole
    
     # Deploy to github pages
     - name: Deploy to Maven Repository
