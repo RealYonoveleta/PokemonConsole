@@ -52,7 +52,7 @@ public class DataInitializer {
 			}
 			CentralLogger.logInfo("%s created", destFile);
 		} catch (IOException e) {
-			e.printStackTrace();
+			CentralLogger.logError("Error initializing data", e);
 		}
 	}
 }

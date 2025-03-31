@@ -50,17 +50,15 @@ public abstract class AbstractParser<T> implements Parser<T> {
 			return deserializeJson(inputStream);
 
 		} catch (IOException e) {
-			System.err.println("I/O Error while reading file: " + getFilePath());
-			e.printStackTrace();
+			CentralLogger.logError("I/O Error while reading file: " + getFilePath(), e);
 		} catch (JsonSyntaxException | JsonIOException e) {
-			System.err.println("Error parsing JSON file: " + getFilePath());
-			e.printStackTrace();
+			CentralLogger.logError("Error parsing JSON file: " + getFilePath(), e);
 		} finally {
 			if (inputStream != null) {
 				try {
 					inputStream.close();
 				} catch (IOException e) {
-					System.err.println("Failed to close input stream: " + getFilePath());
+					CentralLogger.logError("Failed to close input stream: " + getFilePath(), e);
 				}
 			}
 		}

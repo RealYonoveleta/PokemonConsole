@@ -7,6 +7,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.yonoveleta.pokemon.exception.StatusCreationException;
+import com.yonoveleta.pokemon.io.log.CentralLogger;
 import com.yonoveleta.pokemon.registry.StatusRegistry;
 import com.yonoveleta.pokemon.status.Status;
 
@@ -23,7 +24,7 @@ public class StatusDeserializer implements JsonDeserializer<Status> {
         try {
 			return createStatus(statusClass);
 		} catch (StatusCreationException e) {
-			e.printStackTrace();
+			CentralLogger.logError("Error deserializing status: " + statusClass, e);
 			return null;
 		}
 	}

@@ -29,11 +29,9 @@ public class DependencyInjector {
 				field.set(instanceMap.get(declaringClass), instanceMap.get(field.getType()));
 				CentralLogger.logInfo("%s injected into %s", field.getType().getSimpleName(),
 						declaringClass.getSimpleName());
-			} catch (IllegalArgumentException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				CentralLogger.logError("Error during dependency injection", e);
+			} 
 		}
 	}
 
