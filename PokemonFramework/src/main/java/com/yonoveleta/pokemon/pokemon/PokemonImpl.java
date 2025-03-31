@@ -10,10 +10,12 @@ import com.yonoveleta.pokemon.stat.Stat;
 import com.yonoveleta.pokemon.stat.StatType;
 import com.yonoveleta.pokemon.status.Status;
 import com.yonoveleta.pokemon.type.Type;
+import com.yonoveleta.pokemon.ui.PokemonUI;
+import com.yonoveleta.pokemon.ui.manager.PokemonUIManager;
 
 public class PokemonImpl implements Pokemon {
 
-	private static final PokemonUI pokemonUI = new PokemonUI();
+	private static final PokemonUI pokemonUI = PokemonUIManager.getInstance();
 
 	private String name;
 	private int maxHp;
@@ -91,13 +93,18 @@ public class PokemonImpl implements Pokemon {
 			return;
 		}
 		
+		// Check if the Pokémon already knows the move
+	    if (knowsMove(newMove)) {
+	        return; 
+	    }
+		
 	    if (movesKnown() == 4) {
-	        handleMoveReplacement(newMove); // Separate move replacement logic
+	        handleMoveReplacement(newMove); 
 	    } else {
-	        addMove(newMove); // Let Pokemon handle adding the move
+	        addMove(newMove); 
 	        
 	        if(level != 1)
-	        	pokemonUI.showMoveLearnedMessage(this, newMove); // Separate UI handling
+	        	pokemonUI.showMoveLearnedMessage(this, newMove);
 	    }
 	}
 	
@@ -272,6 +279,16 @@ public class PokemonImpl implements Pokemon {
 	@Override
 	public boolean isFainted() {
 		return state == PokemonState.FAINTED;
+	}
+
+	@Override
+	public boolean knowsMove(Move move) {
+		for (Move knownMove : getMoveset()) {  
+	        if (knownMove.getName().equals(move.getName())) {
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 
 }

@@ -9,10 +9,12 @@ import com.yonoveleta.pokemon.effect.Effect;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.type.Type;
 import com.yonoveleta.pokemon.type.TypeChart;
+import com.yonoveleta.pokemon.ui.MoveUI;
+import com.yonoveleta.pokemon.ui.manager.MoveUIManager;
 
 public class MoveImpl implements Move {
 	
-	private static final MoveUI moveUI = new MoveUI();
+	private static final MoveUI moveUI = MoveUIManager.getInstance();
 
 	private String name;
 	private int power;

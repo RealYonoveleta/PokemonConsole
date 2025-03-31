@@ -75,4 +75,6 @@ public interface Pokemon {
 
 	public boolean isFainted();
 	
+	public boolean knowsMove(Move move);
+	
 }

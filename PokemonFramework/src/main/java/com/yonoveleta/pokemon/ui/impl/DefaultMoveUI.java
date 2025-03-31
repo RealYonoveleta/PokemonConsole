@@ -1,9 +1,11 @@
-package com.yonoveleta.pokemon.move;
+package com.yonoveleta.pokemon.ui.impl;
 
 import com.yonoveleta.pokemon.io.ConsoleHandler;
+import com.yonoveleta.pokemon.move.Move;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
+import com.yonoveleta.pokemon.ui.MoveUI;
 
-public class MoveUI {
+public class DefaultMoveUI implements MoveUI {
 	
 	private static final ConsoleHandler console = ConsoleHandler.getInstance();
 

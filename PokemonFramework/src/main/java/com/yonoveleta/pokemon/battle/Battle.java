@@ -5,10 +5,12 @@ import java.util.concurrent.ThreadLocalRandom;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.trainer.Trainer;
 import com.yonoveleta.pokemon.turn.TurnManager;
+import com.yonoveleta.pokemon.ui.BattleUI;
+import com.yonoveleta.pokemon.ui.impl.DefaultBattleUI;
 
 public class Battle {
 
-	private static final BattleUI battleUI = new BattleUI();
+	private BattleUI battleUI = new DefaultBattleUI();
 	private TurnManager turnManager = new TurnManager();
 
 	Trainer player, rival;
@@ -45,6 +47,10 @@ public class Battle {
 		Trainer winner = player.getHealthyPokemonCount() > 0 ? player : rival;
 		battleUI.announceWinner(winner);
 		return winner;
+	}
+	
+	public void changeBattleUI(BattleUI battleUI) {
+		this.battleUI = battleUI;
 	}
 
 }

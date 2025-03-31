@@ -1,11 +1,12 @@
 package com.yonoveleta.pokemon.status;
 
 import com.yonoveleta.pokemon.pokemon.Pokemon;
+import com.yonoveleta.pokemon.ui.StatusUI;
+import com.yonoveleta.pokemon.ui.manager.StatusUIManager;
 
 public abstract class AbstractStatus implements Status {
 	
-	protected static final StatusUI statusUI = new StatusUI();
-	
+	protected static final StatusUI statusUI = StatusUIManager.getInstance();
 	protected int duration;      // Total duration of the status effect
     protected int turnsRemaining; // How many turns are left
     

@@ -8,13 +8,13 @@ import java.util.Queue;
 import com.yonoveleta.pokemon.move.Move;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.pokemon.PokemonState;
-import com.yonoveleta.pokemon.pokemon.PokemonUI;
 import com.yonoveleta.pokemon.status.Status;
 import com.yonoveleta.pokemon.trainer.Trainer;
+import com.yonoveleta.pokemon.ui.impl.DefaultPokemonUI;
 
 public class TurnManager {
 
-	private static final PokemonUI pokemonUI = new PokemonUI();
+	private static final DefaultPokemonUI pokemonUI = new DefaultPokemonUI();
 
 	private Queue<TurnAction> actionQueue;
 	private List<TurnAction> actionsPerformed;
