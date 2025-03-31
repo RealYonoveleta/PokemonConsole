@@ -1,6 +1,5 @@
 package com.yonoveleta.pokemon.io;
 
-
 import java.util.Scanner;
 
 public class ConsoleHandler {
@@ -79,6 +78,15 @@ public class ConsoleHandler {
 	public int askForNumber(String prompt, Object... args) {
 		String formattedPrompt = String.format(prompt, args);
 		return askForNumber(formattedPrompt);
+	}
+	
+	public String askForString(String prompt) {
+		displayMessage(prompt);
+		return scanner.nextLine();
+	}
+	
+	public String askForString(String format, Object... args) {
+		return askForString(String.format(format, args));
 	}
 	
 	public void close() {
