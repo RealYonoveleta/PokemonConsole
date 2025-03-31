@@ -619,5 +619,21 @@
     "type": "normal",
     "category": "physical",
     "effects": []
+  },
+  {
+    "name": "Scratch",
+    "power": 40,
+    "pp": 35,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Growl",
+    "power": 0,
+    "pp": 40,
+    "type": "normal",
+    "category": "status",
+    "effects": []
   }
 ]
