@@ -27,7 +27,7 @@ public abstract class AbstractGameFactory<K, V> implements GameFactory<K, V> {
 					cache.put(getKey(item), item);
 			}
 		} catch (FileNotFoundException e) {
-			CentralLogger.logError("File not found", e);;
+			CentralLogger.logError("File not found", e);
 		}
 	}
 
