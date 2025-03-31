@@ -74,7 +74,7 @@ public class PokemonUIManager implements PokemonUI {
 
 	@Override
 	public int askForMoveToForget(Pokemon pokemon) {
-		return askForMoveToForget(pokemon);
+		return pokemonUI.askForMoveToForget(pokemon);
 	}
 
 	@Override
