@@ -1,171 +1,623 @@
 [
-	{
-	  "name": "Absorb",
-	  "power": 20,
-	  "pp": 25,
-	  "type": "grass",
-	  "category": "special",
-	  "effects": []
-	},
-	{
-	  "name": "Acid",
-	  "power": 40,
-	  "pp": 30,
-	  "type": "poison",
-	  "category": "special",
-	  "effects": []
-	},
-	{
-	  "name": "Acid Armor",
-	  "power": 0,
-	  "pp": 40,
-	  "type": "poison",
-	  "category": "status",
-	  "effects": []
-	},
-	{
-	  "name": "Agility",
-	  "power": 0,
-	  "pp": 30,
-	  "type": "psychic",
-	  "category": "status",
-	  "effects": []
-	},
-	{
-	  "name": "Amnesia",
-	  "power": 0,
-	  "pp": 20,
-	  "type": "psychic",
-	  "category": "status",
-	  "effects": []
-	},
-	{
-	  "name": "Aurora Beam",
-	  "power": 65,
-	  "pp": 20,
-	  "type": "ice",
-	  "category": "special",
-	  "effects": []
-	},
-	{
-	  "name": "Barrage",
-	  "power": 15,
-	  "pp": 20,
-	  "type": "normal",
-	  "category": "physical",
-	  "effects": []
-	},
-	{
-	  "name": "Barrier",
-	  "power": 0,
-	  "pp": 30,
-	  "type": "psychic",
-	  "category": "status",
-	  "effects": []
-	},
-	{
-	  "name": "Bite",
-	  "power": 60,
-	  "pp": 25,
-	  "type": "dark",
-	  "category": "physical",
-	  "effects": []
-	},
-	{
-	  "name": "Blizzard",
-	  "power": 110,
-	  "pp": 5,
-	  "type": "ice",
-	  "category": "special",
-	  "effects": []
-	},
-	{
-	  "name": "Body Slam",
-	  "power": 85,
-	  "pp": 15,
-	  "type": "normal",
-	  "category": "physical",
-	  "effects": []
-	},
-	{
-	  "name": "Bone Club",
-	  "power": 65,
-	  "pp": 20,
-	  "type": "ground",
-	  "category": "physical",
-	  "effects": []
-	},
-	{
-	  "name": "Bonemerang",
-	  "power": 50,
-	  "pp": 10,
-	  "type": "ground",
-	  "category": "physical",
-	  "effects": []
-	},
-	{
-	  "name": "Bubble",
-	  "power": 40,
-	  "pp": 30,
-	  "type": "water",
-	  "category": "special",
-	  "effects": []
-	},
-	{
-	  "name": "Bubble Beam",
-	  "power": 65,
-	  "pp": 20,
-	  "type": "water",
-	  "category": "special",
-	  "effects": []
-	},
-	{
-	  "name": "Clamp",
-	  "power": 35,
-	  "pp": 10,
-	  "type": "water",
-	  "category": "physical",
-	  "effects": []
-	},
-	{
-	  "name": "Confuse Ray",
-	  "power": 0,
-	  "pp": 10,
-	  "type": "ghost",
-	  "category": "status",
-	  "effects": []
-	},
-	{
-	  "name": "Confusion",
-	  "power": 50,
-	  "pp": 25,
-	  "type": "psychic",
-	  "category": "special",
-	  "effects": []
-	},
-	{
-	  "name": "Disable",
-	  "power": 0,
-	  "pp": 20,
-	  "type": "normal",
-	  "category": "status",
-	  "effects": []
-	},
-	{
-	  "name": "Dizzy Punch",
-	  "power": 70,
-	  "pp": 10,
-	  "type": "normal",
-	  "category": "physical",
-	  "effects": []
-	},
-	{
-		"name": "Ember",
-		"power": 40,
-		"pp": 25,
-		"type": "fire",
-		"category": "special",
-		"effects": [{"type": "status", "effect": {"status": {"type": "burn"}, "chance": 0.1}}]
-	}
+  {
+    "name": "Absorb",
+    "power": 20,
+    "pp": 25,
+    "type": "grass",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Acid",
+    "power": 40,
+    "pp": 30,
+    "type": "poison",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Acid Armor",
+    "power": 0,
+    "pp": 40,
+    "type": "poison",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Agility",
+    "power": 0,
+    "pp": 30,
+    "type": "psychic",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Amnesia",
+    "power": 0,
+    "pp": 20,
+    "type": "psychic",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Aurora Beam",
+    "power": 65,
+    "pp": 20,
+    "type": "ice",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Barrage",
+    "power": 15,
+    "pp": 20,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Barrier",
+    "power": 0,
+    "pp": 30,
+    "type": "psychic",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Bite",
+    "power": 60,
+    "pp": 25,
+    "type": "dark",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Blizzard",
+    "power": 110,
+    "pp": 5,
+    "type": "ice",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Body Slam",
+    "power": 85,
+    "pp": 15,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Bone Club",
+    "power": 65,
+    "pp": 20,
+    "type": "ground",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Bonemerang",
+    "power": 50,
+    "pp": 10,
+    "type": "ground",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Bubble",
+    "power": 40,
+    "pp": 30,
+    "type": "water",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Bubble Beam",
+    "power": 65,
+    "pp": 20,
+    "type": "water",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Clamp",
+    "power": 35,
+    "pp": 10,
+    "type": "water",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Confuse Ray",
+    "power": 0,
+    "pp": 10,
+    "type": "ghost",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Confusion",
+    "power": 50,
+    "pp": 25,
+    "type": "psychic",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Disable",
+    "power": 0,
+    "pp": 20,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Dizzy Punch",
+    "power": 70,
+    "pp": 10,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Ember",
+    "power": 40,
+    "pp": 25,
+    "type": "fire",
+    "category": "special",
+    "effects": [
+      {
+        "type": "status",
+        "effect": { "status": { "type": "burn" }, "chance": 0.1 }
+      }
+    ]
+  },
+  {
+    "name": "Explosion",
+    "power": 250,
+    "pp": 5,
+    "type": "normal",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Fire Blast",
+    "power": 120,
+    "pp": 5,
+    "type": "fire",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Fire Spin",
+    "power": 35,
+    "pp": 15,
+    "type": "fire",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Flamethrower",
+    "power": 95,
+    "pp": 15,
+    "type": "fire",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Fury Attack",
+    "power": 15,
+    "pp": 20,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Fury Swipes",
+    "power": 18,
+    "pp": 15,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Harden",
+    "power": 0,
+    "pp": 30,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Headbutt",
+    "power": 70,
+    "pp": 15,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Hydro Pump",
+    "power": 110,
+    "pp": 5,
+    "type": "water",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Hyper Beam",
+    "power": 150,
+    "pp": 5,
+    "type": "normal",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Hypnosis",
+    "power": 0,
+    "pp": 20,
+    "type": "psychic",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Ice Beam",
+    "power": 95,
+    "pp": 10,
+    "type": "ice",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Icy Wind",
+    "power": 55,
+    "pp": 15,
+    "type": "ice",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Imprison",
+    "power": 0,
+    "pp": 10,
+    "type": "psychic",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Lick",
+    "power": 30,
+    "pp": 30,
+    "type": "ghost",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Light Screen",
+    "power": 0,
+    "pp": 30,
+    "type": "psychic",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Lovely Kiss",
+    "power": 0,
+    "pp": 10,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Mega Drain",
+    "power": 40,
+    "pp": 15,
+    "type": "grass",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Mega Kick",
+    "power": 120,
+    "pp": 5,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Mega Punch",
+    "power": 80,
+    "pp": 20,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Metronome",
+    "power": 0,
+    "pp": 10,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Mimic",
+    "power": 0,
+    "pp": 10,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Night Shade",
+    "power": 50,
+    "pp": 15,
+    "type": "ghost",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Pay Day",
+    "power": 40,
+    "pp": 20,
+    "type": "normal",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Peck",
+    "power": 35,
+    "pp": 35,
+    "type": "flying",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Poison Sting",
+    "power": 15,
+    "pp": 35,
+    "type": "poison",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Polymerize",
+    "power": 0,
+    "pp": 10,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Quick Attack",
+    "power": 40,
+    "pp": 30,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Rage",
+    "power": 20,
+    "pp": 20,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Reflect",
+    "power": 0,
+    "pp": 20,
+    "type": "psychic",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Rest",
+    "power": 0,
+    "pp": 10,
+    "type": "psychic",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Roar",
+    "power": 0,
+    "pp": 20,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Rock Slide",
+    "power": 75,
+    "pp": 10,
+    "type": "rock",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Seismic Toss",
+    "power": 0,
+    "pp": 20,
+    "type": "fighting",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Sing",
+    "power": 0,
+    "pp": 15,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Skull Bash",
+    "power": 130,
+    "pp": 5,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Slash",
+    "power": 70,
+    "pp": 20,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Sleep Powder",
+    "power": 0,
+    "pp": 15,
+    "type": "grass",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Sleep Talk",
+    "power": 0,
+    "pp": 10,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Smog",
+    "power": 20,
+    "pp": 20,
+    "type": "poison",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Smokescreen",
+    "power": 0,
+    "pp": 20,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Soft-Boiled",
+    "power": 0,
+    "pp": 10,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Sonic Boom",
+    "power": 20,
+    "pp": 20,
+    "type": "normal",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Supersonic",
+    "power": 0,
+    "pp": 20,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Swift",
+    "power": 60,
+    "pp": 20,
+    "type": "normal",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Tackle",
+    "power": 40,
+    "pp": 35,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Tail Whip",
+    "power": 0,
+    "pp": 30,
+    "type": "normal",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Take Down",
+    "power": 90,
+    "pp": 20,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Teleport",
+    "power": 0,
+    "pp": 20,
+    "type": "psychic",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Thunder",
+    "power": 110,
+    "pp": 5,
+    "type": "electric",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Thunderbolt",
+    "power": 95,
+    "pp": 15,
+    "type": "electric",
+    "category": "special",
+    "effects": []
+  },
+  {
+    "name": "Thunder Wave",
+    "power": 0,
+    "pp": 20,
+    "type": "electric",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Toxic",
+    "power": 0,
+    "pp": 10,
+    "type": "poison",
+    "category": "status",
+    "effects": []
+  },
+  {
+    "name": "Vice Grip",
+    "power": 55,
+    "pp": 30,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Vine Whip",
+    "power": 45,
+    "pp": 25,
+    "type": "grass",
+    "category": "physical",
+    "effects": []
+  },
+  {
+    "name": "Wrap",
+    "power": 15,
+    "pp": 20,
+    "type": "normal",
+    "category": "physical",
+    "effects": []
+  }
 ]
-
