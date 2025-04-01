@@ -19,6 +19,6 @@ public interface Trainer {
 	
 	public String getName();
 	
-	void setTrainerUI(TrainerUI UI);
+	void setTrainerUI(TrainerUI trainerUI);
 
 }

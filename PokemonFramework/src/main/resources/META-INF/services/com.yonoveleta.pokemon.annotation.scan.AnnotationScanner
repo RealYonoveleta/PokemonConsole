@@ -6,3 +6,4 @@ com.yonoveleta.pokemon.di.scan.FactoryScanner
 com.yonoveleta.pokemon.di.scan.GameContextScanner
 com.yonoveleta.pokemon.di.scan.LoaderScanner
 com.yonoveleta.pokemon.di.scan.InjectScanner
+com.yonoveleta.pokemon.di.scan.UIManagerTypeScanner
