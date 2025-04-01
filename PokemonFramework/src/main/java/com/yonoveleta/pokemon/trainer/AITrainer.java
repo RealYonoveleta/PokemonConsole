@@ -26,7 +26,7 @@ public class AITrainer extends AbstractTrainer {
 	}
 
 	@Override
-	public void setActivePokemon() {
+	public void setActivePokemon(int option) {
 		if(getHealthyPokemonCount() > 0)
 			this.currentPokemon = chooseRandomPokemon();
 	} 

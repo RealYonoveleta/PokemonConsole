@@ -6,7 +6,7 @@ import com.yonoveleta.pokemon.ui.manager.StatusUIManager;
 
 public abstract class AbstractStatus implements Status {
 	
-	protected static final StatusUI statusUI = StatusUIManager.getInstance();
+	protected StatusUI statusUI = StatusUIManager.getInstance().getUI();
 	protected int duration;      // Total duration of the status effect
     protected int turnsRemaining; // How many turns are left
     
@@ -39,6 +39,11 @@ public abstract class AbstractStatus implements Status {
 		if(!isExpired()) return;
 		onExpire(pokemon);
 		pokemon.removeStatus(this);
+	}
+	
+	@Override
+	public void setStatusUI(StatusUI statusUI) {
+		this.statusUI = statusUI;
 	}
 	
 	protected void onExpire(Pokemon pokemon) {

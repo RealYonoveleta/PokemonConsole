@@ -96,7 +96,7 @@ public class TurnManager {
 			pokemonUI.showFaintedMessage(pokemon);
 			
 			if(trainer.getHealthyPokemonCount() > 0) {
-				trainer.setActivePokemon();
+				trainer.setActivePokemon(0);
 			}
 		}
 	}

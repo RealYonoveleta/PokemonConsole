@@ -4,10 +4,12 @@ import java.util.List;
 
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.pokemon.PokemonState;
+import com.yonoveleta.pokemon.ui.TrainerUI;
+import com.yonoveleta.pokemon.ui.manager.TrainerUIManager;
 
 public abstract class AbstractTrainer implements Trainer {
 
-	protected static final TrainerUI trainerUI = new TrainerUI();
+	protected TrainerUI trainerUI = TrainerUIManager.getInstance().getUI();
 
 	protected String name;
 	protected List<Pokemon> pokemons;
@@ -43,6 +45,11 @@ public abstract class AbstractTrainer implements Trainer {
 		}
 
 		return count;
+	}
+	
+	@Override
+	public void setTrainerUI(TrainerUI trainerUI) {
+		this.trainerUI = trainerUI;
 	}
 
 }

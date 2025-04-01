@@ -6,6 +6,7 @@ import java.util.List;
 import com.yonoveleta.pokemon.damage.DamageCalculator;
 import com.yonoveleta.pokemon.damage.Gen1Calculator;
 import com.yonoveleta.pokemon.effect.Effect;
+import com.yonoveleta.pokemon.io.log.CentralLogger;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.type.Type;
 import com.yonoveleta.pokemon.type.TypeChart;
@@ -14,7 +15,7 @@ import com.yonoveleta.pokemon.ui.manager.MoveUIManager;
 
 public class MoveImpl implements Move {
 	
-	private static final MoveUI moveUI = MoveUIManager.getInstance();
+	private MoveUI moveUI = MoveUIManager.getInstance().getUI();
 
 	private String name;
 	private int power;
@@ -40,7 +41,7 @@ public class MoveImpl implements Move {
  
 	public MoveImpl(Move other) {
 		if (other == null) {
-	        System.err.println("Warning: Attempted to create MoveImpl from a null Move.");
+	        CentralLogger.logWarn("Warning: Attempted to create MoveImpl from a null Move.");
 	        return;
 	    }
 		
@@ -127,6 +128,11 @@ public class MoveImpl implements Move {
 	    }
 	    
 	    reducePPs();
+	}
+
+	@Override
+	public void setMoveUI(MoveUI moveUI) {
+		this.moveUI = moveUI;
 	}
 
 }

@@ -6,6 +6,7 @@ import com.yonoveleta.pokemon.damage.DamageCalculator;
 import com.yonoveleta.pokemon.effect.Effect;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.type.Type;
+import com.yonoveleta.pokemon.ui.MoveUI;
 
 public interface Move {
 	
@@ -30,5 +31,7 @@ public interface Move {
 	public void execute(Pokemon user, Pokemon target, DamageCalculator damageCalculator);
 	
 	public void addEffect(Effect effect);
+	
+	void setMoveUI(MoveUI moveUI);
 
 }

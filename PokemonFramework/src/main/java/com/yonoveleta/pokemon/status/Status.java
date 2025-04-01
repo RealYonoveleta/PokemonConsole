@@ -1,6 +1,7 @@
 package com.yonoveleta.pokemon.status;
 
 import com.yonoveleta.pokemon.pokemon.Pokemon;
+import com.yonoveleta.pokemon.ui.StatusUI;
 
 public interface Status {
 	
@@ -23,5 +24,7 @@ public interface Status {
 	void decrementTurnsRemaining();
 	
 	Status createNewInstance();
+	
+	void setStatusUI(StatusUI statusUI);
 
 }

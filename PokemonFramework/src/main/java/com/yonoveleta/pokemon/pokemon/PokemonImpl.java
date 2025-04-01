@@ -15,7 +15,7 @@ import com.yonoveleta.pokemon.ui.manager.PokemonUIManager;
 
 public class PokemonImpl implements Pokemon {
 
-	private static final PokemonUI pokemonUI = PokemonUIManager.getInstance();
+	private PokemonUI pokemonUI = PokemonUIManager.getInstance().getUI();
 
 	private String name;
 	private int maxHp;
@@ -289,6 +289,11 @@ public class PokemonImpl implements Pokemon {
 	        }
 	    }
 	    return false;
+	}
+
+	@Override
+	public void setPokemonUI(PokemonUI pokemonUI) {
+		this.pokemonUI = pokemonUI;
 	}
 
 }

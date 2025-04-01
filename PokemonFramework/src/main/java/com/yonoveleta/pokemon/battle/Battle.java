@@ -6,11 +6,11 @@ import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.trainer.Trainer;
 import com.yonoveleta.pokemon.turn.TurnManager;
 import com.yonoveleta.pokemon.ui.BattleUI;
-import com.yonoveleta.pokemon.ui.impl.DefaultBattleUI;
+import com.yonoveleta.pokemon.ui.manager.BattleUIManager;
 
 public class Battle {
 
-	private BattleUI battleUI = new DefaultBattleUI();
+	private BattleUI battleUI;
 	private TurnManager turnManager = new TurnManager();
 
 	Trainer player, rival;
@@ -18,6 +18,7 @@ public class Battle {
 	public Battle(Trainer player, Trainer rival) {
 		this.player = player;
 		this.rival = rival;
+		battleUI = BattleUIManager.getInstance().getUI();
 	}
 
 	public Trainer start() {
@@ -49,7 +50,7 @@ public class Battle {
 		return winner;
 	}
 	
-	public void changeBattleUI(BattleUI battleUI) {
+	public void setBattleUI(BattleUI battleUI) {
 		this.battleUI = battleUI;
 	}
 

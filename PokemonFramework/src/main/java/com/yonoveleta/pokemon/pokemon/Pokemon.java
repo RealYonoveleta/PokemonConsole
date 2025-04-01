@@ -6,6 +6,7 @@ import com.yonoveleta.pokemon.move.Move;
 import com.yonoveleta.pokemon.stat.StatType;
 import com.yonoveleta.pokemon.status.Status;
 import com.yonoveleta.pokemon.type.Type;
+import com.yonoveleta.pokemon.ui.PokemonUI;
 
 public interface Pokemon {
 	
@@ -76,5 +77,7 @@ public interface Pokemon {
 	public boolean isFainted();
 	
 	public boolean knowsMove(Move move);
+	
+	void setPokemonUI(PokemonUI pokemonUI);
 	
 }
