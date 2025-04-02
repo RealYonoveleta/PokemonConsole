@@ -20,5 +20,7 @@ public interface Trainer {
 	public String getName();
 	
 	void setTrainerUI(TrainerUI trainerUI);
+	
+	boolean hasHealthyPokemons();
 
 }

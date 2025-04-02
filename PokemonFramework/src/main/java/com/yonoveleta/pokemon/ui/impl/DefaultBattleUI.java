@@ -5,10 +5,15 @@ import com.yonoveleta.pokemon.move.Move;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.trainer.Trainer;
 import com.yonoveleta.pokemon.ui.BattleUI;
+import com.yonoveleta.pokemon.ui.events.battle.BattleUIEventHandler;
 
 public class DefaultBattleUI implements BattleUI {
 
 	private static final ConsoleHandler console = ConsoleHandler.getInstance();
+	
+	{
+		new BattleUIEventHandler(this);
+	}
 
 	public void displayBattleStart() {
 		console.displayMessage("\nThe battle begins!");

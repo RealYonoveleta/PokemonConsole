@@ -51,5 +51,10 @@ public abstract class AbstractTrainer implements Trainer {
 	public void setTrainerUI(TrainerUI trainerUI) {
 		this.trainerUI = trainerUI;
 	}
+	
+	@Override
+	public boolean hasHealthyPokemons() {
+		return getHealthyPokemonCount() > 0;
+	}
 
 }

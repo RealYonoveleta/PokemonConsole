@@ -1,57 +1,71 @@
 package com.yonoveleta.pokemon.battle;
+import java.util.List;
+import java.util.concurrent.CyclicBarrier;
 
-import java.util.concurrent.ThreadLocalRandom;
-
-import com.yonoveleta.pokemon.pokemon.Pokemon;
+import com.yonoveleta.pokemon.event.EventDispatcher;
+import com.yonoveleta.pokemon.event.battle.BattleEventHandler;
+import com.yonoveleta.pokemon.event.battle.BattleStartEvent;
+import com.yonoveleta.pokemon.move.Move;
 import com.yonoveleta.pokemon.trainer.Trainer;
 import com.yonoveleta.pokemon.turn.TurnManager;
-import com.yonoveleta.pokemon.ui.BattleUI;
-import com.yonoveleta.pokemon.ui.manager.BattleUIManager;
+import com.yonoveleta.pokemon.ui.events.battle.AskForMoveEvent;
+import com.yonoveleta.pokemon.ui.events.battle.DisplayBattleWinnerEvent;
+import com.yonoveleta.pokemon.ui.events.battle.DisplayPokemonStatesEvent;
 
 public class Battle {
 
-	private BattleUI battleUI;
 	private TurnManager turnManager = new TurnManager();
 
-	Trainer player, rival;
+	List<Trainer> participants;
+	private CyclicBarrier barrier;
 
-	public Battle(Trainer player, Trainer rival) {
-		this.player = player;
-		this.rival = rival;
-		battleUI = BattleUIManager.getInstance().getUI();
+	{
+		new BattleEventHandler(this);
+	}
+
+	public Battle(Trainer... participants) {
+		this.participants = List.of(participants);
+		this.barrier = new CyclicBarrier(2, () -> turnManager.processTurn());
 	}
 
 	public Trainer start() {
-		battleUI.displayBattleStart();
+		EventDispatcher.dispatch(new BattleStartEvent(participants));
 
-		Pokemon currentPlayerPokemon;
-		Pokemon currentRivalPokemon;
+		while (hasActiveParticipants()) {
+			// Show HP before making a move
+			EventDispatcher.dispatch(new DisplayPokemonStatesEvent(participants));
 
-		while (player.getHealthyPokemonCount() > 0 && rival.getHealthyPokemonCount() > 0) {
-			currentPlayerPokemon = this.player.getCurrentPokemon();
-			currentRivalPokemon = this.rival.getCurrentPokemon();
+			for (Trainer participant : participants) {
+				EventDispatcher.dispatch(new AskForMoveEvent(participant, move -> {
+					Move chosenMove = participant.getCurrentPokemon().getMove(move);
+					// Process the move chosen by the participant
+					turnManager.addAction(participant, participant.getCurrentPokemon(), chosenMove,
+							participant.getCurrentPokemon(), participant);
 
-			battleUI.showCurrentPokemonsHp(player, currentPlayerPokemon, rival, currentRivalPokemon);
-
-			int option = battleUI.askForMoveChoice(currentPlayerPokemon);
-			turnManager.addAction(player, currentPlayerPokemon, currentPlayerPokemon.getMove(option),
-					currentRivalPokemon, rival);
-
-			// Random ai action
-			int randomMove = ThreadLocalRandom.current().nextInt(0, currentRivalPokemon.movesKnown());
-			turnManager.addAction(rival, currentRivalPokemon, currentRivalPokemon.getMove(randomMove),
-					currentPlayerPokemon, player);
-
-			turnManager.processTurn();
+					// Notify the barrier that the participant has finished their action
+					try {
+						barrier.await(); // Wait for other participants to finish
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+				}));
+			}
 		}
 
-		Trainer winner = player.getHealthyPokemonCount() > 0 ? player : rival;
-		battleUI.announceWinner(winner);
+		Trainer winner = determineWinner();
+		EventDispatcher.dispatch(new DisplayBattleWinnerEvent(winner));
 		return winner;
 	}
+
+	private boolean hasActiveParticipants() {
+		return participants.stream().anyMatch(p -> p.hasHealthyPokemons());
+	}
 	
-	public void setBattleUI(BattleUI battleUI) {
-		this.battleUI = battleUI;
+	private Trainer determineWinner() {
+	    return participants.stream()
+	        .filter(participant -> participant.getHealthyPokemonCount() > 0) // Filter participants with healthy Pokémon
+	        .findFirst() // If only one remains, return that participant
+	        .orElse(null); // If no participants with healthy Pokémon remain, return null
 	}
 
 }
