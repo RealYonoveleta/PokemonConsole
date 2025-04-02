@@ -1,15 +1,15 @@
 package com.yonoveleta.pokemon.battle;
 
 import java.util.List;
-import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.CountDownLatch;
 
 import com.yonoveleta.pokemon.event.EventDispatcher;
+import com.yonoveleta.pokemon.event.battle.AskForMoveEvent;
 import com.yonoveleta.pokemon.event.battle.BattleEventHandler;
 import com.yonoveleta.pokemon.event.battle.BattleStartEvent;
 import com.yonoveleta.pokemon.move.Move;
 import com.yonoveleta.pokemon.trainer.Trainer;
 import com.yonoveleta.pokemon.turn.TurnManager;
-import com.yonoveleta.pokemon.event.battle.AskForMoveEvent;
 import com.yonoveleta.pokemon.ui.events.battle.DisplayBattleWinnerEvent;
 import com.yonoveleta.pokemon.ui.events.battle.DisplayPokemonStatesEvent;
 
@@ -18,7 +18,6 @@ public class SingleBattle implements Battle {
 	private TurnManager turnManager = new TurnManager();
 
 	Trainer participant1, participant2;
-	private CyclicBarrier barrier;
 
 	{
 		new BattleEventHandler(this);
@@ -31,9 +30,10 @@ public class SingleBattle implements Battle {
 
 	public List<Trainer> start() {
 		List<Trainer> participants = List.of(participant1, participant2);
-		this.barrier = new CyclicBarrier(2, () -> turnManager.processTurn());
 		EventDispatcher.dispatch(new BattleStartEvent(participants));
-		
+
+		CountDownLatch latch = new CountDownLatch(participants.size());
+
 		while (hasActiveParticipants()) {
 			// Show HP before making a move
 			EventDispatcher.dispatch(new DisplayPokemonStatesEvent(participants));
@@ -45,14 +45,18 @@ public class SingleBattle implements Battle {
 					turnManager.addAction(participant, participant.getCurrentPokemon(), chosenMove,
 							participant.getCurrentPokemon(), participant);
 
-					// Notify the barrier that the participant has finished their action
-					try {
-						barrier.await(); // Wait for other participants to finish
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
+					latch.countDown(); // Decrease count when a move is chosen
 				}));
 			}
+
+			try {
+				latch.await(); // Block execution until all moves are received
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			// Process turn after all participants have chosen their move
+			turnManager.processTurn();
 		}
 
 		Trainer winner = determineWinner();
@@ -63,9 +67,9 @@ public class SingleBattle implements Battle {
 	private boolean hasActiveParticipants() {
 		return participant1.hasHealthyPokemons() || participant2.hasHealthyPokemons();
 	}
-	
+
 	private Trainer determineWinner() {
-	    return participant1.hasHealthyPokemons() ? participant1 : participant2;
+		return participant1.hasHealthyPokemons() ? participant1 : participant2;
 	}
 
 }
