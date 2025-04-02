@@ -15,20 +15,19 @@ public class BattleUIEventHandler extends AbstractEventHandler<BattleUI> {
 	@Override
 	public void registerListeners() {
 		EventDispatcher.registerListener(DisplayBattleStartEvent.class, this::handleDisplayBattleStart);
-		EventDispatcher.registerListener(DisplayCurrentPokemonsHP.class, this::handleDisplayCurrentPokemonsHP);
-		EventDispatcher.registerListener(AskForMoveEvent.class, this::handleAskForMove);
+		EventDispatcher.registerListener(DisplayPokemonStatesEvent.class, this::handleDisplayPokemonStates);
+		EventDispatcher.registerListener(DisplayAskForMoveEvent.class, this::handleAskForMove);
 	}
 
 	private void handleDisplayBattleStart(DisplayBattleStartEvent event) {
 		entity.displayBattleStart();
 	}
 
-	private void handleDisplayCurrentPokemonsHP(DisplayCurrentPokemonsHP event) {
-		entity.showCurrentPokemonsHp(event.getTrainer1(), event.getPokemon1(), event.getTrainer2(),
-				event.getPokemon2());
+	private void handleDisplayPokemonStates(DisplayPokemonStatesEvent event) {
+		entity.showPokemonStates(event.getParticipants());
 	}
 
-	private void handleAskForMove(AskForMoveEvent event) {
+	private void handleAskForMove(DisplayAskForMoveEvent event) {
 		CompletableFuture.supplyAsync(() -> entity.askForMoveChoice(event.getParticipant().getCurrentPokemon()))
 				.thenAccept(choice -> event.respond(choice));
 	}

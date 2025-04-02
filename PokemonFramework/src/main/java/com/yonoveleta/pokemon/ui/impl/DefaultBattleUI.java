@@ -1,5 +1,7 @@
 package com.yonoveleta.pokemon.ui.impl;
 
+import java.util.List;
+
 import com.yonoveleta.pokemon.io.ConsoleHandler;
 import com.yonoveleta.pokemon.move.Move;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
@@ -10,7 +12,7 @@ import com.yonoveleta.pokemon.ui.events.battle.BattleUIEventHandler;
 public class DefaultBattleUI implements BattleUI {
 
 	private static final ConsoleHandler console = ConsoleHandler.getInstance();
-	
+
 	{
 		new BattleUIEventHandler(this);
 	}
@@ -19,10 +21,15 @@ public class DefaultBattleUI implements BattleUI {
 		console.displayMessage("\nThe battle begins!");
 	}
 
-	public void showCurrentPokemonsHp(Trainer player, Pokemon playerPokemon, Trainer rival, Pokemon rivalPokemon) {
-		console.displayMessage("%n%n%s(%s Lv%d): %dhp vs %s(%s Lv%d): %dhp%n", player.getName(),
-				playerPokemon.getName(), playerPokemon.getLevel(), playerPokemon.getHp(), rival.getName(),
-				rivalPokemon.getName(), rivalPokemon.getLevel(), rivalPokemon.getHp());
+	public void showPokemonStates(List<Trainer> participants) {
+		String pokemonStates = "";
+		for (Trainer participant : participants) {
+			Pokemon participantPokemon = participant.getCurrentPokemon();
+			pokemonStates += String.format("%s(%s Lv%d): %dhp\t", participant.getName(), participantPokemon.getName(),
+					participantPokemon.getLevel(), participantPokemon.getHp());
+		}
+		
+		console.displayMessage(pokemonStates);
 	}
 
 	public int askForMoveChoice(Pokemon pokemon) {

@@ -1,6 +1,8 @@
 package com.yonoveleta.pokemon.factory;
 
-import com.yonoveleta.pokemon.battle.Battle;
+import java.util.List;
+
+import com.yonoveleta.pokemon.battle.SingleBattle;
 import com.yonoveleta.pokemon.di.annotation.Factory;
 import com.yonoveleta.pokemon.trainer.Trainer;
 
@@ -15,8 +17,8 @@ public class BattleManager {
 		return INSTANCE;
 	}
 	
-	public Trainer startBattle(Trainer player, Trainer rival) {
-		return new Battle(player, rival).start();
+	public List<Trainer> startBattle(Trainer player, Trainer rival) {
+		return new SingleBattle(player, rival).start();
 	}
 
 }
