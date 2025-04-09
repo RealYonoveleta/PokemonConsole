@@ -144,7 +144,7 @@ public class PokemonImpl implements Pokemon {
 
 	@Override
 	public List<Move> getMoveset() {
-		return new ArrayList<Move>(moveset);
+		return moveset;
 	}
 
 	public String getName() {

@@ -11,8 +11,6 @@ public interface BattleUI {
 	
 	void showPokemonStates(List<Trainer> participants);
 	
-	int askForMoveChoice(Pokemon pokemon);
-	
 	void announceFaint(Pokemon pokemon);
 	
 	void announceWinner(Trainer winner);

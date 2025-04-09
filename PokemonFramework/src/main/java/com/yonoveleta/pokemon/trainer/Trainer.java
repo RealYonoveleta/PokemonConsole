@@ -1,7 +1,9 @@
 package com.yonoveleta.pokemon.trainer;
 
 import java.util.List;
+import java.util.function.Consumer;
 
+import com.yonoveleta.pokemon.move.Move;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.ui.TrainerUI;
 
@@ -23,4 +25,5 @@ public interface Trainer {
 	
 	boolean hasHealthyPokemons();
 
+	void chooseMove(Consumer<Move> callback);
 }

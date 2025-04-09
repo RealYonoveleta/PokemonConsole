@@ -2,6 +2,7 @@ package com.yonoveleta.pokemon.trainer;
 
 import java.util.List;
 
+import com.yonoveleta.pokemon.event.trainer.TrainerEventHandler;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.pokemon.PokemonState;
 import com.yonoveleta.pokemon.ui.TrainerUI;
@@ -14,6 +15,10 @@ public abstract class AbstractTrainer implements Trainer {
 	protected String name;
 	protected List<Pokemon> pokemons;
 	protected int currentPokemon = 0;
+	
+	{
+		new TrainerEventHandler(this);
+	}
 
 	public AbstractTrainer(String name, List<Pokemon> pokemons) {
 		this.name = name;

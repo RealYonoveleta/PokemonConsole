@@ -3,7 +3,6 @@ package com.yonoveleta.pokemon.ui.impl;
 import java.util.List;
 
 import com.yonoveleta.pokemon.io.ConsoleHandler;
-import com.yonoveleta.pokemon.move.Move;
 import com.yonoveleta.pokemon.pokemon.Pokemon;
 import com.yonoveleta.pokemon.trainer.Trainer;
 import com.yonoveleta.pokemon.ui.BattleUI;
@@ -30,16 +29,6 @@ public class DefaultBattleUI implements BattleUI {
 		}
 		
 		console.displayMessage(pokemonStates);
-	}
-
-	public int askForMoveChoice(Pokemon pokemon) {
-		StringBuilder prompt = new StringBuilder();
-		prompt.append(String.format("\nWhat should %s do?:%n%n", pokemon.getName()));
-		prompt.append(String.format("%-3s %-15s %-10s %-6s %-10s%n", "#", "Move", "Power", "PPs", "Type"));
-		prompt.append("--------------------------------------------");
-
-		return console.askForChoiceArray(prompt.toString(),
-				pokemon.getMoveset().stream().map(Move::toString).toArray(String[]::new));
 	}
 
 	public void announceFaint(Pokemon pokemon) {

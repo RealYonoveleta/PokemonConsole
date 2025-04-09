@@ -8,5 +8,9 @@ public abstract class AbstractEventHandler<T> implements EventHandler<T> {
 		this.entity = entity;
 		registerListeners();
 	}
+	
+	protected <E extends Event> void onEvent(Class<E> eventType, EventListener<E> listener) {
+        EventDispatcher.registerListener(entity, eventType, listener);
+    }
 
 }
